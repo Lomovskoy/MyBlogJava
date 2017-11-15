@@ -4,7 +4,7 @@
     Author     : Kirill
 --%>
 
-        <footer><!--Footer-->
+        <footer class="container"><!--Footer-->
             <hr>
             <p class="text-center">© Company 2017</p>
         </footer><!--/Footer-->

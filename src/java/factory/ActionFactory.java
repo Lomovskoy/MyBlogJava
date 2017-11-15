@@ -14,7 +14,7 @@ public class ActionFactory {
     public ActionCommand defiCommand(HttpServletRequest request){
         
         ActionCommand current = new EmptyCommand();
-        String command = request.getParameter("command");
+        String command = request.getParameter("page");
         if(command == null || command.isEmpty()){
             return current;
         }

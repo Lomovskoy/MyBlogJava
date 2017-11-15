@@ -9,8 +9,11 @@ package command;
 public enum CommandEnum {
     
     //Массив с ключами и згачениями
-    PRODUCT{{this.command = new EmptyCommand();}};
-    
+    PRODUCT{{this.command = new EmptyCommand();}},
+    INDEX{{this.command = new EmptyCommand();}},
+    ADMINPANEL{{this.command = new AdminCommand();}},
+    LOGIN{{this.command = new LoginCommand();}},
+    CHECKOUT{{this.command = new OutCommand();}};
     ActionCommand command;
     
     /**

@@ -36,21 +36,28 @@ public class LoginCommand implements ActionCommand{
         
         HttpSession session = request.getSession(false);
         
+        
         String login = (String) request.getParameter("login");
         String password = (String) request.getParameter("password");
         Admin admin = this.adminFasade.findByLogin(login);
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
         String page = resourceBundle.getString("page.adminlogin");
         
-        if (admin != null && Cryptography.comparePasssword(password, admin.getPassword(), admin.getSalts())){
-            session.setAttribute("admin", admin);
-            request.setAttribute("info", "Вход произведён");
+        if (session.getAttribute("admin") == null){
+            if (admin != null && Cryptography.comparePasssword(password, admin.getPassword(), admin.getSalts())){
+                session.setAttribute("admin", admin);
+                request.setAttribute("info", "Вход произведён");
+                page = resourceBundle.getString("page.adminpage");
+            } 
+            else{
+                request.setAttribute("info", "Логин или пароль неверны");    
+            }
+        }
+        else{ 
             page = resourceBundle.getString("page.adminpage");
-        } 
-        else{
-            request.setAttribute("info", "Логин или пароль неверны");    
         }
         return page;
+        
     }
     
     

@@ -13,7 +13,9 @@ public enum CommandEnum {
     INDEX{{this.command = new EmptyCommand();}},
     ADMINPANEL{{this.command = new AdminCommand();}},
     LOGIN{{this.command = new LoginCommand();}},
-    CHECKOUT{{this.command = new OutCommand();}};
+    CHECKOUT{{this.command = new OutCommand();}},
+    ADDPAGE{{this.command = new AddFormCommand();}},
+    ADDARTICLE{{this.command = new AddArticleCommand();}};
     ActionCommand command;
     
     /**

@@ -40,7 +40,8 @@
                             <a class="btn btn-outline-light my-2 my-sm-0" href="?page=adminPanel">Вход</a>
                         </c:if>
                         <c:if test="${not empty admin}">
-                            <a class="btn btn-outline-light my-2 my-sm-0" href="?page=checkout">Выход</a>
+                            <a class="btn btn-outline-light my-2 my-sm-0 mr-1" href="?page=checkout">Выход</a>
+                            <a class="btn btn-outline-light my-2 my-sm-0" href="?page=login">Кабинет</a>
                         </c:if> 
                     </div>
                 </nav>

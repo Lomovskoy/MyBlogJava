@@ -14,7 +14,7 @@
     <hr>
     <p class="text-center">${info}</p>
     <form class="col-4 mt-4 p-4 border border-secondary rounded container" action="?page=login" method="POST">
-       
+
         <div class="form-group">
             <label for="exampleInputEmail1">Login</label>
             <input type="text" class="form-control" name="login" placeholder="Enter login">
@@ -23,7 +23,9 @@
             <label for="exampleInputPassword1">Password</label>
             <input type="password" class="form-control" name="password" placeholder="Enter hassword">
         </div>
-        <button type="submit" class="btn btn-primary">Вход</button>
+        <div class="row m-0 mt-2">
+            <button type="submit" class="btn btn-primary ml-auto">Вход</button>
+        </div>
     </form>
 </div>
 <%@include file = "../layouts/footer.jsp" %>

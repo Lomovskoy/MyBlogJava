@@ -16,6 +16,8 @@ public class EmptyCommand implements ActionCommand{
      */
     @Override 
     public String execute(HttpServletRequest request){
+        
+        
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
         String page = resourceBundle.getString("page.index");
         return page;

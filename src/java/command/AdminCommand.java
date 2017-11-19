@@ -33,8 +33,20 @@ public class AdminCommand implements ActionCommand{
     @Override
     public String execute(HttpServletRequest request) {  
         
+//        ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
+//        String page = resourceBundle.getString("page.adminlogin");
+//        return page;
+        
+        Cryptography cripto = new Cryptography();
+        String login = "imxo";
+        String password = "74656554";
+        String salts = cripto.getSalts();
+        String passwordHash = cripto.setEncriptPasssword(password, salts);
+        Admin admin = new Admin(login, passwordHash, salts);
+        this.adminFasade.create(admin);
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
         String page = resourceBundle.getString("page.adminlogin");
+        page = resourceBundle.getString("page.adminpage");
         return page;
     }
     

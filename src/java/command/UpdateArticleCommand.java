@@ -1,9 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package command;
 
 import entity.User;
 import entity.Article;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,11 +21,11 @@ import session.ArticleFacade;
  *
  * @author pupil
  */
-public class AddArticleCommand implements ActionCommand{
+public class UpdateArticleCommand implements ActionCommand{
 
     private ArticleFacade articleFasade;
     
-    public AddArticleCommand() {
+    public UpdateArticleCommand() {
         Context context;
         try{
             context = new InitialContext();
@@ -35,14 +38,19 @@ public class AddArticleCommand implements ActionCommand{
     @Override
     public String execute(HttpServletRequest request) {
         
-        HttpSession session = request.getSession(false);
-        
+        HttpSession session = request.getSession(false);       
         User user = (User) session.getAttribute("user");
+        
+        String Id = request.getParameter("id");
+        Long articleId = Long.parseLong(Id);
+        Article article = articleFasade.find(articleId);
+        
         String caption = (String) request.getParameter("caption");
         String content = (String) request.getParameter("content");
-        Calendar date = new GregorianCalendar(); //date.getTime()
-        Article article = new Article(caption, content, date.getTime(), user);
-        articleFasade.create(article);
+        article.setCaption(caption);
+        article.setContent(content);
+        
+        articleFasade.edit(article);
         
         LoginCommand logCom = new LoginCommand();
         logCom.execute(request);
@@ -50,6 +58,9 @@ public class AddArticleCommand implements ActionCommand{
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
         String page = resourceBundle.getString("page.adminpage");
         return page;
+        
     }
+    
+    
     
 }

@@ -21,7 +21,7 @@
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" name="password" placeholder="Enter hassword">
+            <input type="password" class="form-control" name="password" placeholder="Enter password">
         </div>
         <div class="row m-0 mt-2">
             <button type="submit" class="btn btn-primary ml-auto">Вход</button>

@@ -5,7 +5,7 @@
  */
 package session;
 
-import entity.Admin;
+import entity.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author pupil
  */
 @Stateless
-public class AdminFacade extends AbstractFacade<Admin> {
+public class UserFacade extends AbstractFacade<User> {
 
     @PersistenceContext(unitName = "MyBlogLomovskoyPU")
     private EntityManager em;
@@ -25,16 +25,17 @@ public class AdminFacade extends AbstractFacade<Admin> {
         return em;
     }
 
-    public AdminFacade() {
-        super(Admin.class);
+    public UserFacade() {
+        super(User.class);
     }
-    public Admin findByLogin(String login){
+    
+    public User findByLogin(String login){
 
         try{
-            Admin admin = (Admin) em.createQuery("SELECT u FROM Admin u WHERE u.login=:login")
+            User user = (User) em.createQuery("SELECT u FROM User u WHERE u.login=:login")
                     .setParameter("login", login)
                     .getSingleResult();
-            return admin;
+            return user;
 
         }catch(Exception e){
             return null;

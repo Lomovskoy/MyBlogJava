@@ -1,7 +1,10 @@
 package command;
 
 import classes.Cryptography;
-import entity.Admin;
+import entity.User;
+import entity.Article;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,7 +13,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import session.AdminFacade;
+import session.UserFacade;
+import session.ArticleFacade;
+import session.RoleFacade;
 
 /**
  *
@@ -19,13 +24,17 @@ import session.AdminFacade;
  */
 public class LoginCommand implements ActionCommand{
     
-    private AdminFacade adminFasade;
+    private UserFacade userFasade;
+    private ArticleFacade articleFasade;
+    private RoleFacade roleFasade;
     
     public LoginCommand() {
         Context context;
         try{
             context = new InitialContext();
-            this.adminFasade = (AdminFacade) context.lookup("java:module/AdminFacade");
+            this.userFasade = (UserFacade) context.lookup("java:module/UserFacade");
+            this.articleFasade = (ArticleFacade) context.lookup("java:module/ArticleFacade");
+            this.roleFasade = (RoleFacade) context.lookup("java:module/RoleFacade");
         }catch(NamingException ex){
             Logger.getLogger(AdminCommand.class.getName()).log(Level.SEVERE,"Не удалось сессионный бин ",ex);
         }
@@ -39,22 +48,39 @@ public class LoginCommand implements ActionCommand{
         
         String login = (String) request.getParameter("login");
         String password = (String) request.getParameter("password");
-        Admin admin = this.adminFasade.findByLogin(login);
+        User user = this.userFasade.findByLogin(login);
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
         String page = resourceBundle.getString("page.adminlogin");
         
-        if (session.getAttribute("admin") == null){
-            if (admin != null && Cryptography.comparePasssword(password, admin.getPassword(), admin.getSalts())){
-                session.setAttribute("admin", admin);
+        List<Article>articles = articleFasade.findAll();
+        Collections.reverse(articles);
+        request.setAttribute("articles", articles);
+        
+        if (session.getAttribute("user") == null){
+            if ((user != null) && (Cryptography.comparePasssword(password, user.getPassword(), user.getSalts()))){
+                session.setAttribute("user", user);
                 request.setAttribute("info", "Вход произведён");
-                page = resourceBundle.getString("page.adminpage");
+                
+                if(user.getRole().getRoles().equals("ADMIN")){
+                    page = resourceBundle.getString("page.adminpage");
+                }
+                if(user.getRole().getRoles().equals("USER")){
+                    page = resourceBundle.getString("page.index");
+                    return page;
+                }
             } 
             else{
                 request.setAttribute("info", "Логин или пароль неверны");    
             }
         }
         else{ 
-            page = resourceBundle.getString("page.adminpage");
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            if(user.getRole().getRoles().equals("ADMIN")){
+                page = resourceBundle.getString("page.adminpage");
+            }
+            if(user.getRole().getRoles().equals("USER")){
+                page = resourceBundle.getString("page.index");
+            }
         }
         return page;
         

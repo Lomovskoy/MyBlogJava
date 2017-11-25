@@ -15,7 +15,13 @@ public enum CommandEnum {
     LOGIN{{this.command = new LoginCommand();}},
     CHECKOUT{{this.command = new OutCommand();}},
     ADDPAGE{{this.command = new AddFormCommand();}},
-    ADDARTICLE{{this.command = new AddArticleCommand();}};
+    ADDARTICLE{{this.command = new AddArticleCommand();}},
+    DELLARTICLE{{this.command = new DellArticleCommand();}},
+    UPDATEARTICLEFORM{{this.command = new UpdateFormArticleCommand();}},
+    UPDATEARTICLE{{this.command = new UpdateArticleCommand();}},
+    SHOWONEARTICLE{{this.command = new ShowOneArticleCommand();}},   
+    REGFORM{{this.command = new RegFormCommand();}}, 
+    REGISTRATION{{this.command = new RegistrationCommand();}};
     ActionCommand command;
     
     /**

@@ -2,8 +2,7 @@ package command;
 
 import entity.User;
 import entity.Article;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,11 +17,11 @@ import session.ArticleFacade;
  *
  * @author pupil
  */
-public class AddArticleCommand implements ActionCommand{
-
+public class DellArticleCommand implements ActionCommand{
+    
     private ArticleFacade articleFasade;
     
-    public AddArticleCommand() {
+    public DellArticleCommand() {
         Context context;
         try{
             context = new InitialContext();
@@ -31,18 +30,17 @@ public class AddArticleCommand implements ActionCommand{
             Logger.getLogger(ArticleFacade.class.getName()).log(Level.SEVERE,"Не удалось сессионный бин ",ex);
         }
     }
-    
+
     @Override
     public String execute(HttpServletRequest request) {
         
-        HttpSession session = request.getSession(false);
-        
+        HttpSession session = request.getSession(false);       
         User user = (User) session.getAttribute("user");
-        String caption = (String) request.getParameter("caption");
-        String content = (String) request.getParameter("content");
-        Calendar date = new GregorianCalendar(); //date.getTime()
-        Article article = new Article(caption, content, date.getTime(), user);
-        articleFasade.create(article);
+        
+        String Id = request.getParameter("id");
+        Long articleId = Long.parseLong(Id);
+        Article article = articleFasade.find(articleId);
+        articleFasade.remove(article);
         
         LoginCommand logCom = new LoginCommand();
         logCom.execute(request);
@@ -50,6 +48,9 @@ public class AddArticleCommand implements ActionCommand{
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
         String page = resourceBundle.getString("page.adminpage");
         return page;
+        
     }
+    
+
     
 }

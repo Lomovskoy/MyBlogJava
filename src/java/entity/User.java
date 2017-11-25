@@ -2,11 +2,13 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
 /**
@@ -15,7 +17,7 @@ import javax.validation.constraints.Size;
  * Сущность администратора 
  */
 @Entity
-public class Admin implements Serializable {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,14 +36,21 @@ public class Admin implements Serializable {
     @Column(name = "salts")
     private String salts;
 
-    public Admin() {
+    @Column(name = "active")
+    private Boolean active;
+    
+    @OneToOne
+    private Role role;
+    
+    public User() {
     }
 
-    public Admin(String login, String password, String salts) {
+    public User(String login, String password, String salts, Boolean active, Role role) {
         this.login = login;
         this.password = password;
         this.salts = salts;
-        
+        this.active = active;
+        this.role = role;
     }
 
     public Long getId() {
@@ -76,14 +85,31 @@ public class Admin implements Serializable {
         this.salts = salts;
     }
 
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 47 * hash + Objects.hashCode(this.id);
-        hash = 47 * hash + Objects.hashCode(this.login);
-        hash = 47 * hash + Objects.hashCode(this.password);
-        hash = 47 * hash + Objects.hashCode(this.salts);
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.login);
+        hash = 37 * hash + Objects.hashCode(this.password);
+        hash = 37 * hash + Objects.hashCode(this.salts);
+        hash = 37 * hash + Objects.hashCode(this.active);
+        hash = 37 * hash + Objects.hashCode(this.role);
         return hash;
     }
 
@@ -98,7 +124,7 @@ public class Admin implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Admin other = (Admin) obj;
+        final User other = (User) obj;
         if (!Objects.equals(this.login, other.login)) {
             return false;
         }
@@ -111,12 +137,18 @@ public class Admin implements Serializable {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
+        if (!Objects.equals(this.active, other.active)) {
+            return false;
+        }
+        if (!Objects.equals(this.role, other.role)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Admin{" + "id=" + id + ", login=" + login + ", password=" + password + ", salts=" + salts + '}';
+        return "User{" + "id=" + id + ", login=" + login + ", password=" + password + ", salts=" + salts + ", active=" + active + ", role=" + role + '}';
     }
 
     

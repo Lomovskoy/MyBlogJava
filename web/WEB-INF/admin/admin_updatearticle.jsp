@@ -7,22 +7,22 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%@include file = "../layouts/header.jsp" %>
+<%@include file = "../layouts/header.jsp"%>
 
 <div class="container mt-4">
     <h5 class="text-center">Добавить статью</h5>
     <div class="border border-secondary rounded p-4">
-        <form action="?page=addarticle" method="POST">
+        <form action="?page=updatearticle&id=${article.id}" method="POST">
             <div class="form-group">
                 <label for="exampleFormControlInput1">Заголовок статьи</label>
-                <input type="text" name="caption" class="form-control" id="exampleFormControlInput1">
+                <input type="text" name="caption" class="form-control" id="exampleFormControlInput1" value="${article.caption}">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Текст статьи</label>
-                <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="20"></textarea>
+                <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="20">${article.content}</textarea>
             </div>
             <div class="row m-0 mt-2">
-                <button type="submit" class="btn btn-primary ml-auto">Опубликовать</button>
+                <button type="submit" class="btn btn-primary ml-auto">Изменить</button>
             </div>
         </form>
     </div>

@@ -40,12 +40,12 @@ public class Article implements Serializable {
     private Date publicdate;
     
     @OneToOne()
-    private Admin author;
+    private User author;
 
     public Article() {
     }
     
-    public Article(String caption, String content, Date publicdate, Admin author) {
+    public Article(String caption, String content, Date publicdate, User author) {
         this.caption = caption;
         this.content = content;
         this.publicdate = publicdate;
@@ -84,11 +84,11 @@ public class Article implements Serializable {
         this.publicdate = publicdate;
     }
 
-    public Admin getAuthor() {
+    public User getAuthor() {
         return author;
     }
 
-    public void setAuthor(Admin author) {
+    public void setAuthor(User author) {
         this.author = author;
     }
 

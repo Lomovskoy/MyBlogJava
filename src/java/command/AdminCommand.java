@@ -1,7 +1,8 @@
 package command;
 
 import classes.Cryptography;
-import entity.Admin;
+import entity.Role;
+import entity.User;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,7 +10,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
-import session.AdminFacade;
+import session.RoleFacade;
+import session.UserFacade;
 
 /**
  *
@@ -18,13 +20,15 @@ import session.AdminFacade;
  */
 public class AdminCommand implements ActionCommand{
     
-    private AdminFacade adminFasade;
+    private UserFacade userFasade;
+    private RoleFacade roleFacade;
     
     public AdminCommand() {
         Context context;
         try{
             context = new InitialContext();
-            this.adminFasade = (AdminFacade) context.lookup("java:module/AdminFacade");
+            this.userFasade = (UserFacade) context.lookup("java:module/UserFacade");
+            this.roleFacade = (RoleFacade) context.lookup("java:module/RoleFacade");
         }catch(NamingException ex){
             Logger.getLogger(AdminCommand.class.getName()).log(Level.SEVERE,"Не удалось сессионный бин ",ex);
         }
@@ -32,22 +36,29 @@ public class AdminCommand implements ActionCommand{
     
     @Override
     public String execute(HttpServletRequest request) {  
-        
-//        ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
-//        String page = resourceBundle.getString("page.adminlogin");
-//        return page;
-        
-        Cryptography cripto = new Cryptography();
-        String login = "imxo";
-        String password = "74656554";
-        String salts = cripto.getSalts();
-        String passwordHash = cripto.setEncriptPasssword(password, salts);
-        Admin admin = new Admin(login, passwordHash, salts);
-        this.adminFasade.create(admin);
+
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
         String page = resourceBundle.getString("page.adminlogin");
-        page = resourceBundle.getString("page.adminpage");
         return page;
+        
+//        String roles1 = "ADMIN";
+//        String roles2 = "USER";
+//        Role role1obj = new Role(roles1);
+//        Role role2obj = new Role(roles2);
+//        this.roleFacade.create(role1obj);
+//        this.roleFacade.create(role2obj);
+//        //----------------------------------------
+//        Cryptography cripto = new Cryptography();
+//        String login = "imxo";
+//        String password = "74656554";
+//        String salts = cripto.getSalts();
+//        String passwordHash = cripto.setEncriptPasssword(password, salts);
+//        User user = new User(login, passwordHash, salts, Boolean.TRUE, role1obj);
+//        this.userFasade.create(user);
+//        ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
+//        String page = resourceBundle.getString("page.adminlogin");
+//        page = resourceBundle.getString("page.adminpage");
+//        return page;
     }
     
 }

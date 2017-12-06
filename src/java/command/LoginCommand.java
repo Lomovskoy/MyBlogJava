@@ -44,7 +44,7 @@ public class LoginCommand implements ActionCommand{
     public String execute(HttpServletRequest request) {
         
         HttpSession session = request.getSession(false);
-        
+
         
         String login = (String) request.getParameter("login");
         String password = (String) request.getParameter("password");
@@ -63,9 +63,11 @@ public class LoginCommand implements ActionCommand{
                 
                 if(user.getRole().getRoles().equals("ADMIN")){
                     page = resourceBundle.getString("page.adminpage");
+                    session.setAttribute("admin", true);
                 }
                 if(user.getRole().getRoles().equals("USER")){
                     page = resourceBundle.getString("page.index");
+                    session.setAttribute("admin", false);
                     return page;
                 }
             } 
@@ -75,10 +77,10 @@ public class LoginCommand implements ActionCommand{
         }
         else{ 
             // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            if(user.getRole().getRoles().equals("ADMIN")){
+            if(session.getAttribute("admin").equals(true)){
                 page = resourceBundle.getString("page.adminpage");
             }
-            if(user.getRole().getRoles().equals("USER")){
+            else{
                 page = resourceBundle.getString("page.index");
             }
         }

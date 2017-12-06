@@ -21,11 +21,15 @@ public enum CommandEnum {
     UPDATEARTICLE{{this.command = new UpdateArticleCommand();}},
     SHOWONEARTICLE{{this.command = new ShowOneArticleCommand();}},   
     REGFORM{{this.command = new RegFormCommand();}}, 
-    REGISTRATION{{this.command = new RegistrationCommand();}};
+    REGISTRATION{{this.command = new RegistrationCommand();}},
+    USERMANAGEMENT{{this.command = new UserManagementCommand();}},
+    DELLUSER{{this.command = new DellUserCommand();}},
+    UPDATEUSER{{this.command = new UpdateUserCommand();}},
+    ADDCOMMENT{{this.command = new AddCommentCommand();}},
+    DELLCOMMENT{{this.command = new DellCommentCommand();}};
     ActionCommand command;
     
     /**
-     * 
      * @return 
      * Возврашает класс назденный по значению,
      * знавчение берётся из ссылки значения command=ключ

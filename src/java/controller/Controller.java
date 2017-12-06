@@ -26,7 +26,8 @@ public class Controller extends HttpServlet {
         ActionCommand actionCommand = factory.defiCommand(request);
         String page = actionCommand.execute(request);
         if (page != null){
-            request.getRequestDispatcher(page).forward(request, response);
+           request.getRequestDispatcher(page).forward(request, response);
+           //response.sendRedirect(page);
         }
         else{
             request.setAttribute("error","Error! Обращение к несуществующей странице");

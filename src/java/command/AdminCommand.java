@@ -49,7 +49,7 @@ public class AdminCommand implements ActionCommand{
 //        this.roleFacade.create(role2obj);
 //        //----------------------------------------
 //        Cryptography cripto = new Cryptography();
-//        String login = "imxo";
+//        String login = "admin";
 //        String password = "74656554";
 //        String salts = cripto.getSalts();
 //        String passwordHash = cripto.setEncriptPasssword(password, salts);

@@ -15,7 +15,13 @@
         <div class="container">
             <div class="card mt-4" >
                 <div class="card-body">
-                    <a class="card-title h4 text-info" href="?page=showOneArticle&id=${article.id}" >${article.caption}</a>
+                    <c:if test="${empty user}">
+                        <span class="card-title h4 text-info">${article.caption}</span>
+                        <small class="text-danger ml-auto">Для просмотра полной статьи зарегистрируйтесь</small>
+                    </c:if>
+                    <c:if test="${not empty user}">
+                        <a class="card-title h4 text-info" href="?page=showOneArticle&id=${article.id}" >${article.caption}</a>
+                    </c:if>
                     <p class="card-text text-truncate tab-article-text" >${fn:substring(article.content,0,200)} ...</p>
                     <div class="row">
                     <span class="card-link text-success ml-3">

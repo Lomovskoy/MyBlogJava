@@ -29,7 +29,7 @@
             <input type="password" class="form-control" name="password2" placeholder="Enter password">
         </div>
         <div class="row m-0 mt-2">
-            <button type="submit" class="btn btn-primary ml-auto">Вход</button>
+            <button type="submit" class="btn btn-primary ml-auto">Регистрация </button>
         </div>
     </form>
 </div>

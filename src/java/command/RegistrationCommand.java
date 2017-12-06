@@ -68,7 +68,7 @@ public class RegistrationCommand implements ActionCommand{
                 
                 userFasade.create(user);
                 
-                request.setAttribute("info", "Vi Zaregistrirovanni");
+                request.setAttribute("info", "Вы зарегистрированны");
             }else{
                 request.setAttribute("info", "Пароли не совпадают");
             }

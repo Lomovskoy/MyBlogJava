@@ -26,7 +26,10 @@ public enum CommandEnum {
     DELLUSER{{this.command = new DellUserCommand();}},
     UPDATEUSER{{this.command = new UpdateUserCommand();}},
     ADDCOMMENT{{this.command = new AddCommentCommand();}},
-    DELLCOMMENT{{this.command = new DellCommentCommand();}};
+    DELLCOMMENT{{this.command = new DellCommentCommand();}},
+    UPDATECOMMENT{{this.command = new UpdateCommentCommand();}},
+    ADDFILE{{this.command = new UpdateFileFormCommand();}};
+    
     ActionCommand command;
     
     /**

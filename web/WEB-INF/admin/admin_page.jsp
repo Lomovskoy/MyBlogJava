@@ -11,8 +11,9 @@
 
 <div class="container ">
     <div class="row m-0 mt-2">
-        <a class="btn btn-primary mr-auto" href="?page=usermanagement">Управление пользователями</a> 
-        <a class="btn btn-primary ml-auto" href="?page=addpage">Новый пост</a>
+        <a class="btn btn-primary mr-4" href="?page=usermanagement">Управление пользователями</a> 
+        <a class="btn btn-primary mr-4" href="?page=addfile">Добавить файл</a>
+        <a class="btn btn-primary mr-4" href="?page=addpage">Новый пост</a>
     </div>
 </div>
 

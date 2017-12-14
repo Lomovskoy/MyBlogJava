@@ -6,7 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@include file = "../layouts/header.jsp" %>
@@ -18,7 +18,8 @@
             <p class="card-text text-truncate tab-article-text" >${article.content}</p>
             <div class="row">
                 <span class="card-link text-success ml-3">
-                    Дата публикации: ${article.publicdate}
+                    Дата публикации: <%--${dateFormat.format(article.publicdate)}--%>
+                    <fmt:formatDate value="${article.publicdate}" pattern="dd.MM.yyyy HH:mm:ss"/>
                 </span>
                 <span class="card-link text-info ml-auto mr-4">
                     Автор: ${article.author.login}
@@ -31,7 +32,7 @@
         <form class="mb-2" action="?page=addcomment&articleid=${article.id}" method="POST">
             <div class="form-group">
                 <label for="exampleInputEmail1">Комментарий</label>
-                <textarea type="text" class="form-control" name="comment"></textarea>
+                <textarea type="text" class="form-control" name="comment">${changeComments.comment}</textarea>
                 <small class="form-text text-muted">Здесь вы можете оставить свой комментарий</small>
                 <small class="form-text text-info">${info}</small>
             </div>
@@ -55,12 +56,13 @@
                     ${comment.comment}
                     <div class="row">
                         <span class="card-link text-success ml-3">
-                            Дата публикации: ${comment.publicdate}
+                            Дата публикации: ${dateFormat.format(comment.publicdate)}
                         </span>
                         <span class="card-link text-info ml-auto mr-4">
                             Автор: ${comment.author.login}
                         </span>
                             <c:if test='${user.getRole().getRoles().equals("ADMIN") or user.id == comment.author.id}'>
+                                <a class="fa fa-check m-0 mt-3" href="?page=updatecomment&commentid=${comment.id}&articleid=${article.id}"></a>
                                 <a class="fa fa-times m-0 mt-3" href="?page=dellcomment&commentid=${comment.id}&articleid=${article.id}"></a>
                             </c:if>
                         

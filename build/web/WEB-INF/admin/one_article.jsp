@@ -15,7 +15,7 @@
     <div class="card mt-4 mb-2" >
         <div class="card-body">
             <a class="card-title h4 text-info" href="?page=showOneArticle&id=${article.id}" >${article.caption}</a>
-            <p class="card-text text-truncate tab-article-text" >${article.content}</p>
+            <div class="card-text tab-article-text " >${article.content}</div>
             <div class="row">
                 <span class="card-link text-success ml-3">
                     Дата публикации: <%--${dateFormat.format(article.publicdate)}--%>

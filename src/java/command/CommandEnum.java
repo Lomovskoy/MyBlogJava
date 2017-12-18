@@ -30,6 +30,8 @@ public enum CommandEnum {
     UPDATECOMMENT{{this.command = new UpdateCommentCommand();}},
     ADDFILE{{this.command = new UpdateFileFormCommand();}},
     DELLIMAGE{{this.command = new DellImageCommand();}};
+    //UPLOAD{{this.command = new AddImageCommand();}};
+    
     ActionCommand command;
     
     /**

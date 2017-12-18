@@ -2,10 +2,10 @@ a{
     color: inherit;
 }
 body {
-  color: #5a5a5a;
-  font-family: 'Open Sans',Arial,sans-serif;
-  font-size: 15px;
-  background-color: #EBEBEB;
+    color: #5a5a5a;
+    font-family: 'Open Sans',Arial,sans-serif;
+    font-size: 15px;
+    background-color: #EBEBEB;
 }
 h1,h2,h3,h4,h5{
     font-family: 'Montserrat', sans-serif;
@@ -22,4 +22,8 @@ h1,h2,h3,h4,h5{
 .focus:hover{
     background: #EBEBEB;
     color: white;
+}
+
+.index img{
+    max-height: 150px;
 }

@@ -3,6 +3,7 @@ package command;
 
 import entity.User;
 import entity.Article;
+import java.io.File;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import resours.FileDirectoriesManager;
 import session.ArticleFacade;
 
 /**
@@ -41,6 +43,15 @@ public class UpdateFormArticleCommand implements ActionCommand{
         Long articleId = Long.parseLong(Id);
         Article article = articleFasade.find(articleId);
         request.setAttribute("article", article);
+        
+        String path = request.getServletContext().getRealPath("")+File.separator
+                +FileDirectoriesManager.getProperty("dir")+File.separator
+                    +FileDirectoriesManager.getProperty("files");
+        
+        File folder = new File(path);
+        File[] listOfFiles = folder.listFiles();
+        
+        request.setAttribute("images", listOfFiles);
         
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
         String page = resourceBundle.getString("page.updateform");

@@ -4,7 +4,9 @@
     Author     : pupil
 --%>
 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@include file = "../layouts/header.jsp"%>
@@ -25,6 +27,44 @@
                 <button type="submit" class="btn btn-primary ml-auto">Изменить</button>
             </div>
         </form>
+        <div class="container">
+            <h5 class="text-center">Добавить картинку</h5>
+
+            <p class="text-center">Тег для вставки</p>
+            <br>
+            <input class="form-control" id="qwe2">
+
+            <div class="row">
+                <div class="form-group col-4">
+                    <label for="inputState">Имя картинкиы</label>
+                    <select id="inputState" class="form-control" onchange="document.getElementById('qwe2').value = '<img class=&quot;img-thumbnail mr-2 float-left w-15 p-1&quot; src=&quot;fileServlet/' + this.value + '&quot;>';">
+                        <c:forEach var="image" items="${images}" varStatus="status">
+                            <option value="${image.getName()}">${image.getName()}</option>  
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">№</th>
+                                <th scope="col">image</th>
+                                <th scope="col">Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="image" items="${images}" varStatus="status">
+                                <tr>
+                                    <th scope="row">${status.index+1}</th>
+                                    <td><img class="img-fluid " style="width: 55px"src="fileServlet/${image.getName()}"></td>
+                                    <td>${image.getName()}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

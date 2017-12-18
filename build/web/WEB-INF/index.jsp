@@ -22,7 +22,9 @@
                     <c:if test="${not empty user}">
                         <a class="card-title h4 text-info" href="?page=showOneArticle&id=${article.id}" >${article.caption}</a>
                     </c:if>
-                    <p class="card-text text-truncate tab-article-text" >${fn:substring(article.content,0,200)} ...</p>
+                    <div class="card-text tab-article-text index" >${fn:substring(article.content,0,250)} ...</div>
+
+                    <hr class="mt-1">
                     <div class="row">
                     <span class="card-link text-success ml-3">
                         Дата публикации: ${dateFormat.format(article.publicdate)}

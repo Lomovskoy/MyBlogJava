@@ -1,5 +1,6 @@
 package controller;
 
+import command.UpdateFileFormCommand;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -77,10 +78,15 @@ public class FileUploadServlet extends HttpServlet {
             }
             
         }
-        //response.sendRedirect("/WEB-INF/admin/admin_upload_file.jsp");
-        request.getRequestDispatcher("/WEB-INF/admin/admin_upload_file.jsp").forward(request, response);
+        
+        UpdateFileFormCommand ufc = new UpdateFileFormCommand();
+        //!!!!
+        ufc.execute(request);
+        
+        //request.getRequestDispatcher("/WEB-INF/admin/admin_upload_file.jsp").forward(request, response);
+        response.sendRedirect("?page=addfile");
     }
-    
+
     private String getFileName(final Part part) {
         final String partHeader = part.getHeader("content-disposition");
         LOGGER.log(Level.INFO, "Part Header = {0}", partHeader);

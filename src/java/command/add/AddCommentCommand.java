@@ -4,6 +4,7 @@ package command;
 import entity.Article;
 import entity.Comment;
 import entity.User;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -61,7 +62,10 @@ public class AddCommentCommand implements ActionCommand{
 
             request.setAttribute("article", article);
             List<Comment> commentDB = commentFacade.findById(article);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+            request.setAttribute("dateFormat", dateFormat);
             request.setAttribute("comments", commentDB);
+
         }
         else{
             Article article = articleFasade.find(articleId);

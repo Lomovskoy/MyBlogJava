@@ -15,7 +15,7 @@
     <div class="card mt-4 mb-2" >
         <div class="card-body">
             <a class="card-title h4 text-info" href="?page=showOneArticle&id=${article.id}" >${article.caption}</a>
-            <div class="card-text tab-article-text " >${article.content}</div>
+            <div class="card-text tab-article-text onepost" >${article.content}</div>
             <div class="row">
                 <span class="card-link text-success ml-3">
                     Дата публикации: <%--${dateFormat.format(article.publicdate)}--%>
@@ -61,7 +61,7 @@
                         <span class="card-link text-info ml-auto mr-4">
                             Автор: ${comment.author.login}
                         </span>
-                            <c:if test='${user.getRole().getRoles().equals("ADMIN") or user.id == comment.author.id}'>
+                            <c:if test='${user.getRole().getRoles().equals("ADMIN") or user.id == comment.author.id }'>
                                 <a class="fa fa-check m-0 mt-3" href="?page=updatecomment&commentid=${comment.id}&articleid=${article.id}"></a>
                                 <a class="fa fa-times m-0 mt-3" href="?page=dellcomment&commentid=${comment.id}&articleid=${article.id}"></a>
                             </c:if>

@@ -45,8 +45,12 @@
                                 <a class="btn btn-outline-light my-2 my-sm-0" href="?page=login">Кабинет</a>
                                 <a class="btn btn-outline-light my-2 my-sm-0 ml-1" href="?page=checkout">Выход</a>
                             </c:if>
+                            <c:if test='${user.getRole().getRoles().equals("EDITOR")}'>
+                                <a class="btn btn-outline-light my-2 my-sm-0" href="?page=login">Кабинет</a>
+                                <a class="btn btn-outline-light my-2 my-sm-0 ml-1" href="?page=checkout">Выход</a>
+                            </c:if>
                             <c:if test='${user.getRole().getRoles().equals("USER")}'>  
-                              <a class="btn btn-outline-light my-2 my-sm-0 ml-1" href="?page=checkout">Выход</a>
+                                <a class="btn btn-outline-light my-2 my-sm-0 ml-1" href="?page=checkout">Выход</a>
                             </c:if>       
                         </c:if> 
                     </div>

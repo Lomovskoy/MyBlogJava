@@ -42,8 +42,14 @@ public class AddArticleCommand implements ActionCommand{
         User user = (User) session.getAttribute("user");
         String caption = (String) request.getParameter("caption");
         String content = (String) request.getParameter("content");
+        String activeS = (String) request.getParameter("active");
+        Boolean active = true;
+        if(activeS.equals("0")){
+            active = false;
+        }
+        
         Calendar date = new GregorianCalendar(); //date.getTime()
-        Article article = new Article(caption, content, date.getTime(), user);
+        Article article = new Article(caption, content, date.getTime(), user, active);
         articleFasade.create(article);
         
         LoginCommand logCom = new LoginCommand();

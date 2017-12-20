@@ -28,7 +28,7 @@ public class User implements Serializable {
     @Column(name = "login", unique = true)
     private String login;
     
-    @Size(min=3,max=64)
+    @Size(min=6,max=64)
     @Column(name = "password")
     private String password;
     
@@ -42,15 +42,21 @@ public class User implements Serializable {
     @OneToOne
     private Role role;
     
+    
+    @Size(min=6,max=255)
+    @Column(name = "email", unique = true)
+    private String email;
+    
     public User() {
     }
 
-    public User(String login, String password, String salts, Boolean active, Role role) {
+    public User(String login, String password, String salts, Boolean active, Role role, String email) {
         this.login = login;
         this.password = password;
         this.salts = salts;
         this.active = active;
         this.role = role;
+        this.email = email;
     }
 
     public Long getId() {
@@ -101,15 +107,24 @@ public class User implements Serializable {
         this.role = role;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.id);
-        hash = 37 * hash + Objects.hashCode(this.login);
-        hash = 37 * hash + Objects.hashCode(this.password);
-        hash = 37 * hash + Objects.hashCode(this.salts);
-        hash = 37 * hash + Objects.hashCode(this.active);
-        hash = 37 * hash + Objects.hashCode(this.role);
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.login);
+        hash = 59 * hash + Objects.hashCode(this.password);
+        hash = 59 * hash + Objects.hashCode(this.salts);
+        hash = 59 * hash + Objects.hashCode(this.active);
+        hash = 59 * hash + Objects.hashCode(this.role);
+        hash = 59 * hash + Objects.hashCode(this.email);
         return hash;
     }
 
@@ -134,6 +149,9 @@ public class User implements Serializable {
         if (!Objects.equals(this.salts, other.salts)) {
             return false;
         }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -148,8 +166,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", login=" + login + ", password=" + password + ", salts=" + salts + ", active=" + active + ", role=" + role + '}';
+        return "User{" + "id=" + id + ", login=" + login + ", password=" + password + ", salts=" + salts + ", active=" + active + ", role=" + role + ", email=" + email + '}';
     }
 
-    
 }

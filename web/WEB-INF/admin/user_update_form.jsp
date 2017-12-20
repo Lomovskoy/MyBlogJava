@@ -45,6 +45,7 @@
                                     <select id="inputState" class="form-control" name="role">
                                         <option selected value="1">ADMIN</option>
                                         <option value="2">USER</option>
+                                        <option value="3">EDITOR</option>
                                     </select>
                                 </div>
                             </td>

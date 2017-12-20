@@ -8,9 +8,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@include file = "../layouts/header.jsp" %>
-
+<c:if test='${user.getRole().getRoles().equals("ADMIN")}'>
 <div class="container mt-4">
-
+    <h5 class="text-center">Для блокировки администратора, переведите его в разряд пользователей</h5>
+    <hr>
     <table class="table table-striped">
         <thead >
             <tr>
@@ -35,9 +36,9 @@
             </c:forEach>
         </tbody>
     </table>
-
 </div>
-
-
-
+</c:if>
+<c:if test='${user.getRole().getRoles() != "ADMIN"}'>
+    <h5 class="text-center">Вам здесь не рады</h5>
+</c:if>
 <%@include file = "../layouts/footer.jsp" %>

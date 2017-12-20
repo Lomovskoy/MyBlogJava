@@ -26,7 +26,12 @@
             <div class="row m-0 mt-2">
                 <button type="submit" class="btn btn-primary ml-auto">Опубликовать</button>
             </div>
+            <select class="form-control form-control-lg col-3" name="active">
+                <option value="1">Опубликовать</option>
+                <option value="0">Скрыть</option>
+            </select>
         </form>
+
         <div class="container">
             <h5 class="text-center">Добавить картинку</h5>
 

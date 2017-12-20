@@ -47,9 +47,17 @@ public class UpdateArticleCommand implements ActionCommand{
         
         String caption = (String) request.getParameter("caption");
         String content = (String) request.getParameter("content");
+        String activeS = (String) request.getParameter("active");
+        Boolean active = true;
+        
+        if(activeS.equals("0")){
+            active = false;
+        }
+        
         article.setCaption(caption);
         article.setContent(content);
-        
+        article.setActive(active);
+                
         articleFasade.edit(article);
         
         LoginCommand logCom = new LoginCommand();

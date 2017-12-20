@@ -25,6 +25,7 @@ public class Controller extends HttpServlet {
         ActionFactory factory = new ActionFactory();
         ActionCommand actionCommand = factory.defiCommand(request);
         String page = actionCommand.execute(request);
+        
         if (page != null){
            request.getRequestDispatcher(page).forward(request, response);
            //response.sendRedirect(page);

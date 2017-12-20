@@ -3,13 +3,11 @@ package entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -41,15 +39,19 @@ public class Article implements Serializable {
     
     @OneToOne()
     private User author;
+    
+    @Column(name = "active")
+    private Boolean active;
 
     public Article() {
     }
-    
-    public Article(String caption, String content, Date publicdate, User author) {
+
+    public Article(String caption, String content, Date publicdate, User author, Boolean active) {
         this.caption = caption;
         this.content = content;
         this.publicdate = publicdate;
         this.author = author;
+        this.active = active;
     }
 
     public Long getId() {
@@ -92,14 +94,23 @@ public class Article implements Serializable {
         this.author = author;
     }
 
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.id);
-        hash = 23 * hash + Objects.hashCode(this.caption);
-        hash = 23 * hash + Objects.hashCode(this.content);
-        hash = 23 * hash + Objects.hashCode(this.publicdate);
-        hash = 23 * hash + Objects.hashCode(this.author);
+        hash = 53 * hash + Objects.hashCode(this.id);
+        hash = 53 * hash + Objects.hashCode(this.caption);
+        hash = 53 * hash + Objects.hashCode(this.content);
+        hash = 53 * hash + Objects.hashCode(this.publicdate);
+        hash = 53 * hash + Objects.hashCode(this.author);
+        hash = 53 * hash + Objects.hashCode(this.active);
         return hash;
     }
 
@@ -130,15 +141,15 @@ public class Article implements Serializable {
         if (!Objects.equals(this.author, other.author)) {
             return false;
         }
+        if (!Objects.equals(this.active, other.active)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Article{" + "id=" + id + ", caption=" + caption + ", content=" + content + ", publicdate=" + publicdate + ", author=" + author.toString() + '}';
+        return "Article{" + "id=" + id + ", caption=" + caption + ", content=" + content + ", publicdate=" + publicdate + ", author=" + author + ", active=" + active + '}';
     }
-
-   
-    
     
 }

@@ -3,6 +3,7 @@ package command;
 import classes.Cryptography;
 import entity.User;
 import entity.Article;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -84,6 +85,11 @@ public class LoginCommand implements ActionCommand {
                 page = resourceBundle.getString("page.index");
             }
         }
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        request.setAttribute("dateFormat", dateFormat);
+        request.setAttribute("articles", articles);
+        
         return page;
 
     }

@@ -53,31 +53,44 @@
                         <p class="text-center m-0 p-0">Ответ автора</p>
                         <hr class="m-0 p-0">
                     </c:if>
+                    <c:if test='${comment.author.getRole().getRoles().equals("ADMIN")}'>
+                        <span class="badge badge-pill badge-danger mb-0">admin</span>
+                    </c:if>
+                    <c:if test='${comment.author.getRole().getRoles().equals("EDITOR")}'>
+                        <span class="badge badge-pill badge-primary mb-0">editor</span>
+                    </c:if>
                     ${comment.comment}
                     <div class="row">
                         <span class="card-link text-success ml-3">
                             Дата публикации: ${dateFormat.format(comment.publicdate)}
                         </span>
+
                         <span class="card-link text-info ml-auto mr-4">
                             Автор: ${comment.author.login}
                         </span>
                         <c:if test='${user.getRole().getRoles().equals("ADMIN")}'>
                             <c:if test='${user.id == comment.author.id }'>
-                               <a class="fa fa-check m-0 mt-3" href="?page=updatecomment&commentid=${comment.id}&articleid=${article.id}"></a> 
+                                <a class="fa fa-check m-0 mt-3" href="?page=updatecomment&commentid=${comment.id}&articleid=${article.id}"></a> 
+                                <a class="fa fa-times m-0 mt-3" href="?page=dellcomment&commentid=${comment.id}&articleid=${article.id}"></a>
                             </c:if>
-                               <a class="fa fa-times m-0 mt-3" href="?page=dellcomment&commentid=${comment.id}&articleid=${article.id}"></a> 
+                            <c:if test='${comment.author.getRole().getRoles() != ("ADMIN")}'>
+                                <a class="fa fa-times m-0 mt-3" href="?page=dellcomment&commentid=${comment.id}&articleid=${article.id}"></a> 
+                            </c:if>    
                         </c:if>
+
                         <c:if test='${user.getRole().getRoles() != ("ADMIN") && user.getRole().getRoles() != ("EDITOR") && user.id == comment.author.id }'>
                             <a class="fa fa-check m-0 mt-3" href="?page=updatecomment&commentid=${comment.id}&articleid=${article.id}"></a>
                             <a class="fa fa-times m-0 mt-3" href="?page=dellcomment&commentid=${comment.id}&articleid=${article.id}"></a>
                         </c:if>
+
                         <c:if test='${user.getRole().getRoles().equals("EDITOR")}'>
                             <c:if test='${user.id == comment.author.id }'>
-                               <a class="fa fa-check m-0 mt-3" href="?page=updatecomment&commentid=${comment.id}&articleid=${article.id}"></a> 
+                                <a class="fa fa-check m-0 mt-3" href="?page=updatecomment&commentid=${comment.id}&articleid=${article.id}"></a> 
+                                <a class="fa fa-times m-0 mt-3" href="?page=dellcomment&commentid=${comment.id}&articleid=${article.id}"></a>
                             </c:if>
-                            <c:if test='${comment.author.getRole().getRoles().equals("USER") || user.getRole().getRoles().equals("EDITOR")}'>
-                               <a class="fa fa-times m-0 mt-3" href="?page=dellcomment&commentid=${comment.id}&articleid=${article.id}"></a> 
-                            </c:if>
+                            <c:if test='${comment.author.getRole().getRoles() != ("ADMIN") && comment.author.getRole().getRoles() != ("EDITOR")}'>
+                                <a class="fa fa-times m-0 mt-3" href="?page=dellcomment&commentid=${comment.id}&articleid=${article.id}"></a> 
+                            </c:if> 
                         </c:if>
                     </div>
                 </div>

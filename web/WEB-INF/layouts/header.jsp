@@ -41,6 +41,11 @@
                             <a class="btn btn-outline-light my-2 my-sm-0 ml-1" href="?page=adminPanel">Вход</a>
                         </c:if>
                         <c:if test="${not empty user}">
+                            <ul class="navbar-nav">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href='#'>Приветствую: ${user.getLogin()}</a>
+                                </li>
+                            </ul>
                             <c:if test='${user.getRole().getRoles().equals("ADMIN")}'>
                                 <a class="btn btn-outline-light my-2 my-sm-0" href="?page=login">Кабинет</a>
                                 <a class="btn btn-outline-light my-2 my-sm-0 ml-1" href="?page=checkout">Выход</a>

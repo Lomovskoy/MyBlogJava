@@ -30,7 +30,7 @@ public class Article implements Serializable {
     @Column(name = "caption")
     private String caption;
     
-    @Column(length = 20000, name = "content")
+    @Column(length = 200000, name = "content")
     private String content;
     
     @Column(name = "publicdate")

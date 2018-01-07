@@ -18,6 +18,7 @@
                 <th scope="col">Id </th>
                 <th scope="col">Активен</th>
                 <th scope="col">Логин</th>
+                <th scope="col">Аватар</th>
                 <th class="text-center" scope="col">Роль</th>
                 <th scope="col" colspan="2">Действие</th>
             </tr>
@@ -29,6 +30,7 @@
                 <th scope="row">${user.id}</th>
                 <td>${user.active}</td>
                 <td>${user.login}</td>
+                <td><img src="imageServlet/${user.image}" alt="Photo" class="rounded-circle" style="height: 25px"></td>
                 <td class="text-center">${user.role.roles}</td>
                 <td><a href="?page=updateuser&id=${user.id}"class="fa fa-pencil-square-o"></a></td>
                 <td><a href="?page=delluser&id=${user.id}" class="fa fa-close"></a></td>

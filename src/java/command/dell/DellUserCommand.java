@@ -1,6 +1,7 @@
 
 package command;
 
+import classes.Cryptography;
 import entity.Article;
 import entity.User;
 import java.util.List;
@@ -48,7 +49,12 @@ public class DellUserCommand implements ActionCommand{
             Long userId = Long.parseLong(Id);
             
             User user = userFasade.find(userId);
-            userFasade.remove(user);
+            user.setActive(Boolean.FALSE);
+            user.setImage("delete.png");
+            String password = Cryptography.getSalts();
+            user.setPassword(password);
+            
+            userFasade.edit(user);
 
             List<User>users = this.userFasade.findAll();
             request.setAttribute("users", users);

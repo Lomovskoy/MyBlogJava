@@ -29,9 +29,9 @@ public enum CommandEnum {
     DELLCOMMENT{{this.command = new DellCommentCommand();}},
     UPDATECOMMENT{{this.command = new UpdateCommentCommand();}},
     ADDFILE{{this.command = new UpdateFileFormCommand();}},
-    DELLIMAGE{{this.command = new DellImageCommand();}};
-    //UPLOAD{{this.command = new AddImageCommand();}};
-    
+    DELLIMAGE{{this.command = new DellImageCommand();}},
+    CHANGEINFORMATIONFORM{{this.command = new ChangeInformationFormCommand();}},
+    CHANGEINFORMATION{{this.command = new ChangeInformationCommand();}};
     ActionCommand command;
     
     /**

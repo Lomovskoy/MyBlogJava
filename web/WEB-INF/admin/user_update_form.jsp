@@ -11,7 +11,7 @@
 
 
 <div class="container mt-4">
-    <h5 class="text-center">Добавить статью</h5>
+    <h5 class="text-center">Изменить статус пользователя</h5>
     <div class="border border-secondary rounded p-4 form-group">
         <form action="?page=updateuser&id=${user.id}" method="POST">
             <div class="container mt-4">
@@ -38,7 +38,7 @@
                                 </div>
                             </td>
                             <td class="pb-0">
-                                <input type="text" class="form-control" name="login" value="${user.login}">
+                                <p class="text-center">${user.login}</p>
                             </td>
                             <td class="pb-0">
                                 <div class="form-group">

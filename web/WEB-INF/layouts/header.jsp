@@ -43,7 +43,8 @@
                         <c:if test="${not empty user}">
                             <ul class="navbar-nav">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href='#'>Приветствую: ${user.getLogin()}</a>
+                                    <a class="nav-link" href='#'>Приветствую: ${user.getLogin()} <img src="imageServlet/${user.image}" alt="Photo" class="rounded-circle" style="height: 30px"></a>
+                                    
                                 </li>
                             </ul>
                             <c:if test='${user.getRole().getRoles().equals("ADMIN")}'>
@@ -54,7 +55,8 @@
                                 <a class="btn btn-outline-light my-2 my-sm-0" href="?page=login">Кабинет</a>
                                 <a class="btn btn-outline-light my-2 my-sm-0 ml-1" href="?page=checkout">Выход</a>
                             </c:if>
-                            <c:if test='${user.getRole().getRoles().equals("USER")}'>  
+                            <c:if test='${user.getRole().getRoles().equals("USER")}'>
+                                <a class="btn btn-outline-light my-2 my-sm-0" href="?page=changeinformationform">Личные данные</a>
                                 <a class="btn btn-outline-light my-2 my-sm-0 ml-1" href="?page=checkout">Выход</a>
                             </c:if>       
                         </c:if> 

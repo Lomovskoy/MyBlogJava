@@ -55,6 +55,10 @@ public class LoginCommand implements ActionCommand {
         Collections.reverse(articles);
         request.setAttribute("articles", articles);
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        request.setAttribute("dateFormat", dateFormat);
+        request.setAttribute("articles", articles);
+        
         if (session.getAttribute("user") == null) {
             if ((user != null) && (Cryptography.comparePasssword(password, user.getPassword(), user.getSalts()))) {
                 
@@ -85,10 +89,6 @@ public class LoginCommand implements ActionCommand {
                 page = resourceBundle.getString("page.index");
             }
         }
-        
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-        request.setAttribute("dateFormat", dateFormat);
-        request.setAttribute("articles", articles);
         
         return page;
 

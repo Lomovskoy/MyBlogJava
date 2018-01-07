@@ -20,6 +20,7 @@
             </c:if>
             <a class="btn btn-primary mr-4" href="?page=addfile">Добавить файл</a>
             <a class="btn btn-primary mr-4" href="?page=addpage">Новый пост</a>
+            <a class="btn btn-primary mr-4" href="?page=changeinformationform">Личные данные</a>
         </div>
     </div>
 

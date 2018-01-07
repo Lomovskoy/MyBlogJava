@@ -2,7 +2,6 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,16 +46,21 @@ public class User implements Serializable {
     @Column(name = "email", unique = true)
     private String email;
     
+    @Size(min=1,max=255)
+    @Column(name = "image")
+    private String image;
+    
     public User() {
     }
 
-    public User(String login, String password, String salts, Boolean active, Role role, String email) {
+    public User(String login, String password, String salts, Boolean active, Role role, String email, String image) {
         this.login = login;
         this.password = password;
         this.salts = salts;
         this.active = active;
         this.role = role;
         this.email = email;
+        this.image = image;
     }
 
     public Long getId() {
@@ -115,16 +119,25 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        hash = 59 * hash + Objects.hashCode(this.login);
-        hash = 59 * hash + Objects.hashCode(this.password);
-        hash = 59 * hash + Objects.hashCode(this.salts);
-        hash = 59 * hash + Objects.hashCode(this.active);
-        hash = 59 * hash + Objects.hashCode(this.role);
-        hash = 59 * hash + Objects.hashCode(this.email);
+        hash = 29 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.login);
+        hash = 29 * hash + Objects.hashCode(this.password);
+        hash = 29 * hash + Objects.hashCode(this.salts);
+        hash = 29 * hash + Objects.hashCode(this.active);
+        hash = 29 * hash + Objects.hashCode(this.role);
+        hash = 29 * hash + Objects.hashCode(this.email);
+        hash = 29 * hash + Objects.hashCode(this.image);
         return hash;
     }
 
@@ -152,6 +165,9 @@ public class User implements Serializable {
         if (!Objects.equals(this.email, other.email)) {
             return false;
         }
+        if (!Objects.equals(this.image, other.image)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -166,7 +182,9 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", login=" + login + ", password=" + password + ", salts=" + salts + ", active=" + active + ", role=" + role + ", email=" + email + '}';
+        return "User{" + "id=" + id + ", login=" + login + ", password=" + password + ", salts=" + salts + ", active=" + active + ", role=" + role + ", email=" + email + ", image=" + image + '}';
     }
+
+   
 
 }

@@ -22,7 +22,7 @@
                     <fmt:formatDate value="${article.publicdate}" pattern="dd.MM.yyyy HH:mm:ss"/>
                 </span>
                 <span class="card-link text-info ml-auto mr-4">
-                    Автор: ${article.author.login}
+                    Автор: ${article.author.login}   <img src="imageServlet/${article.author.image}" alt="Photo" class="rounded-circle" style="height: 30px">
                 </span>
             </div>
         </div>
@@ -53,6 +53,7 @@
                         <p class="text-center m-0 p-0">Ответ автора</p>
                         <hr class="m-0 p-0">
                     </c:if>
+                        <img src="imageServlet/${comment.author.image}" alt="Photo" class="rounded-circle" style="height: 35px">
                     <c:if test='${comment.author.getRole().getRoles().equals("ADMIN")}'>
                         <span class="badge badge-pill badge-danger mb-0">admin</span>
                     </c:if>

@@ -30,7 +30,7 @@
                             Дата публикации: ${dateFormat.format(article.publicdate)}
                         </span>
                         <span class="card-link text-info ml-auto mr-4">
-                            Автор: ${article.author.login}
+                            Автор: ${article.author.login}  <img src="imageServlet/${article.author.image}" alt="Photo" class="rounded-circle" style="height: 30px">
                         </span>
                     </div>
                 </div>

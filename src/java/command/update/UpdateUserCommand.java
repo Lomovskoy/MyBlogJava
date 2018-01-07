@@ -49,17 +49,15 @@ public class UpdateUserCommand implements ActionCommand{
 
             User user = userFasade.find(userId);
              
-            String login = (String) request.getParameter("login");
+            
             String active = (String) request.getParameter("active");
             String roleStr = (String) request.getParameter("role");
             
             //boolean activebool = Boolean.parseBoolean(active);
-            if(login != null && active != null && roleStr != null && 
-                    login != "" && active != "" && roleStr != ""){
+            if(active != null && roleStr != null && active != "" && roleStr != ""){
                 
                 Role role = roleFacade.find(Long.parseLong(roleStr));
 
-                user.setLogin(login);
                 user.setActive("true".equals(active));
                 user.setRole(role);
 

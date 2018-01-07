@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author pupil
+ * @author lomov
  */
 @Stateless
 public class UserFacade extends AbstractFacade<User> {
@@ -53,4 +53,5 @@ public class UserFacade extends AbstractFacade<User> {
             return null;
         }
     }
+    
 }

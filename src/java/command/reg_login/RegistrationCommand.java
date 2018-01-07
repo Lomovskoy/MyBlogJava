@@ -79,7 +79,8 @@ public class RegistrationCommand implements ActionCommand {
                     Long idUser = 2L;
                     Role role = roleFasade.find(idUser);
                     Boolean active = true;
-                    User user = new User(login, password, salts, active, role, email);
+                    String image = "no-image.png";
+                    User user = new User(login, password, salts, active, role, email, image);
 
                     userFasade.create(user);
 

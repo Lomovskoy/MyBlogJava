@@ -5,6 +5,7 @@
  */
 package session;
 
+import entity.Role;
 import entity.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -52,6 +53,10 @@ public class UserFacade extends AbstractFacade<User> {
         }catch(Exception e){
             return null;
         }
+    }
+
+    public void create(Role role1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

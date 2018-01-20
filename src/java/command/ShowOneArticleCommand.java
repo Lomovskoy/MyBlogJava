@@ -2,7 +2,6 @@ package command;
 
 import entity.Article;
 import entity.Comment;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ResourceBundle;

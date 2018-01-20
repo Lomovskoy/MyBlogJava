@@ -1,12 +1,9 @@
 package command;
 
 import entity.Article;
-import java.io.File;
-import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,7 +11,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import session.ArticleFacade;
 
 /**
@@ -44,11 +40,17 @@ public class EmptyCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
 
-        List<Article> articles = articleFasade.findAll();
-        Collections.reverse(articles);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-        request.setAttribute("dateFormat", dateFormat);
-        request.setAttribute("articles", articles);
+        try {
+            List<Article> articles = articleFasade.findAll();
+            Collections.reverse(articles);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+            request.setAttribute("dateFormat", dateFormat);
+            request.setAttribute("articles", articles);
+        } catch (Exception e) {
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
+            String page = resourceBundle.getString("page.index");
+            return page;
+        }
 
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
         String page = resourceBundle.getString("page.index");

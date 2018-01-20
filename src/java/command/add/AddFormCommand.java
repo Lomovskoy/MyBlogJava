@@ -1,5 +1,6 @@
-package command;
+package command.add;
 
+import command.ActionCommand;
 import java.io.File;
 import java.util.ResourceBundle;
 import javax.servlet.http.HttpServletRequest;

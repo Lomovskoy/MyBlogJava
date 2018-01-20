@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Янв 04 2018 г., 11:54
--- Версия сервера: 10.1.29-MariaDB
--- Версия PHP: 7.2.0
+-- Время создания: Янв 15 2018 г., 09:28
+-- Версия сервера: 10.1.26-MariaDB
+-- Версия PHP: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -114,24 +114,6 @@ INSERT INTO `role` (`ID`, `roles`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `sequence`
---
-
-CREATE TABLE `sequence` (
-  `SEQ_NAME` varchar(50) NOT NULL,
-  `SEQ_COUNT` decimal(38,0) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `sequence`
---
-
-INSERT INTO `sequence` (`SEQ_NAME`, `SEQ_COUNT`) VALUES
-('SEQ_GEN', '0');
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `user`
 --
 
@@ -151,8 +133,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `active`, `login`, `password`, `salts`, `ROLE_ID`, `email`, `image`) VALUES
-(1, 1, 'admin', 'a8829436d429eb6affce20b89d2b93250f76c2c7231cc3235977172c83ed03bd', 'bf2a28bf853542c3d0334e596d1586e9', 1, 'lomovskoy.kirill@yandex.ru', 'photo.png'),
-(2, 1, 'user', 'efb71f6d1b6bc50e47665a9ebba760037ccdb4ae4ce7704b1d05fe28ec18307f', '8ec9245275823cbb77a4656fdf61b18f', 2, 'imxo2@rambler.ru', '4VGLccasOPg.jpg'),
+(1, 1, 'admin', 'a8829436d429eb6affce20b89d2b93250f76c2c7231cc3235977172c83ed03bd', 'bf2a28bf853542c3d0334e596d1586e9', 1, 'lomovskoy.kirill@yandex.ru', '1.png'),
+(2, 1, 'user', 'efb71f6d1b6bc50e47665a9ebba760037ccdb4ae4ce7704b1d05fe28ec18307f', '8ec9245275823cbb77a4656fdf61b18f', 2, 'imxo2@rambler.ru', '2.png'),
 (3, 1, 'editor', '9077a22f2efa6fde1f58a6942e6d7cb810454bad8c7ac8fa56c84b49f66950f8', 'a1a62575806d740ff097091a6ee086c', 3, 'wivi@gmail.ru', 'wicca2.png'),
 (5, 0, 'teacher', '37c978241806fe96ca5cac8ce4642620', '83b8ecf494741994241a995e48b22b92', 2, 'freedognight@gmaol.ru', 'delete.png'),
 (13, 1, 'imxo', '2d0d6d7c93a9b734be3aa409976c8ea38e7dfbd27738c59192993744ab0eb2ce', 'c3e450f14cccd1d668500ccaa90ef04a', 2, 'imxo@rambler.ru', 'no-image.png'),
@@ -185,12 +167,6 @@ ALTER TABLE `role`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Индексы таблицы `sequence`
---
-ALTER TABLE `sequence`
-  ADD PRIMARY KEY (`SEQ_NAME`);
-
---
 -- Индексы таблицы `user`
 --
 ALTER TABLE `user`
@@ -208,25 +184,21 @@ ALTER TABLE `user`
 --
 ALTER TABLE `article`
   MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
 --
 -- AUTO_INCREMENT для таблицы `comment`
 --
 ALTER TABLE `comment`
   MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
-
 --
 -- AUTO_INCREMENT для таблицы `role`
 --
 ALTER TABLE `role`
   MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
   MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --

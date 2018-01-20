@@ -1,8 +1,9 @@
-package command;
+package command.add;
 
+import command.ActionCommand;
+import command.reg_login.LoginCommand;
 import entity.User;
 import entity.Article;
-import java.io.File;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
@@ -13,7 +14,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import resours.FileDirectoriesManager;
 import session.ArticleFacade;
 
 /**

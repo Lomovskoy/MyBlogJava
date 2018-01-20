@@ -1,5 +1,5 @@
 
-package command;
+package command.add;
 
 import command.ActionCommand;
 import java.io.File;

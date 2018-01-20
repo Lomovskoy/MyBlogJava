@@ -1,7 +1,7 @@
 
 package controller;
 
-import command.UpdateFileFormCommand;
+import command.add.UpdateFileFormCommand;
 import entity.User;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -53,7 +54,7 @@ public class ChangeImageServlet extends HttpServlet {
                 + FileDirectoriesManager.getProperty("dir") + File.separator
                 + FileDirectoriesManager.getProperty("image");
         Part filePart = request.getPart("image");
-        String fileName = (String) getFileName(filePart);
+        String fileName = getNewFileName(getFileName(filePart), request);
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
 
@@ -130,6 +131,18 @@ public class ChangeImageServlet extends HttpServlet {
             }
         }
         return null;
+    }
+    
+    private String getNewFileName(String oldFileName, HttpServletRequest request) {
+        String[] splitByTochka = oldFileName.split(Pattern.quote("."));
+        System.out.println(oldFileName);
+        System.out.println(splitByTochka.length);
+        String fileType = splitByTochka[splitByTochka.length - 1];
+        HttpSession session = request.getSession(false);
+        User user = (User) session.getAttribute("user");
+        
+        Long filename = user.getId();
+        return filename + "."+fileType;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

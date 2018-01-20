@@ -1,6 +1,7 @@
 
-package command;
+package command.update;
 
+import command.ActionCommand;
 import entity.User;
 import entity.Article;
 import java.io.File;

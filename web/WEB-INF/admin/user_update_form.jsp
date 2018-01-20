@@ -44,8 +44,8 @@
                                 <div class="form-group">
                                     <select id="inputState" class="form-control" name="role">
                                         <option selected value="1">ADMIN</option>
-                                        <option value="2">USER</option>
-                                        <option value="3">EDITOR</option>
+                                        <option value="2">EDITOR</option>
+                                        <option value="3">USER</option>
                                     </select>
                                 </div>
                             </td>

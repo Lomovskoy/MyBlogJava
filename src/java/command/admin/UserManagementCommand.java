@@ -1,6 +1,6 @@
-package command;
+package command.admin;
 
-import entity.Article;
+import command.ActionCommand;
 import entity.User;
 import java.util.List;
 import java.util.ResourceBundle;

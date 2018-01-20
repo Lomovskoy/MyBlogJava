@@ -8,29 +8,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author pupil
- * Сцщность статьи в блоге
- */
 @Entity
+@Table(name = "article")
 public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(max=256)
-    @Column(name = "caption")
+    
+    @Column(length = 255, name = "caption")
     private String caption;
     
-    @Column(length = 200000, name = "content")
+    @Column(length = 21500, name = "content")//21845
     private String content;
     
     @Column(name = "publicdate")
@@ -38,6 +38,7 @@ public class Article implements Serializable {
     private Date publicdate;
     
     @OneToOne()
+    @JoinColumn(name = "author")
     private User author;
     
     @Column(name = "active")
@@ -149,7 +150,7 @@ public class Article implements Serializable {
 
     @Override
     public String toString() {
-        return "Article{" + "id=" + id + ", caption=" + caption + ", content=" + content + ", publicdate=" + publicdate + ", author=" + author + ", active=" + active + '}';
+        return "Article{" + "id=" + id + ", caption=" + caption + ", content=" + content + ", publicdate=" + publicdate + ", author=" + author.getLogin() + ", active=" + active + '}';
     }
     
 }

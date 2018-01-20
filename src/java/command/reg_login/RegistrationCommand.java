@@ -1,12 +1,10 @@
-package command;
+package command.reg_login;
 
 import classes.Cryptography;
-import entity.Article;
+import command.ActionCommand;
+import command.admin.AdminCommand;
 import entity.Role;
 import entity.User;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,8 +12,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import org.apache.jasper.tagplugins.jstl.ForEach;
 import session.RoleFacade;
 import session.UserFacade;
 
@@ -67,7 +63,7 @@ public class RegistrationCommand implements ActionCommand {
                     page = resourceBundle.getString("page.regform");
                     flag += 1;
                 }
-                if (password1.length() <= 6 ) {
+                if (password1.length() <= 6) {
                     request.setAttribute("info", "Пароль слишком короткий мин 6 символов");
                     page = resourceBundle.getString("page.regform");
                     flag += 1;
@@ -76,8 +72,21 @@ public class RegistrationCommand implements ActionCommand {
                 if (flag == 0) {
                     String salts = Cryptography.getSalts();
                     String password = Cryptography.setEncriptPasssword(password1, salts);
-                    Long idUser = 2L;
-                    Role role = roleFasade.find(idUser);
+                    Long idUser = 3L;
+                    Role role;
+
+                    role = roleFasade.find(idUser);
+                    if (role == null || "".equals(role)) {
+                        Role role1 = new Role("ADMIN");
+                        Role role2 = new Role("EDITOR");
+                        Role role3 = new Role("USER");
+                        roleFasade.create(role1);
+                        roleFasade.create(role2);
+                        roleFasade.create(role3);
+                    }
+
+                    role = roleFasade.find(idUser);
+
                     Boolean active = true;
                     String image = "no-image.png";
                     User user = new User(login, password, salts, active, role, email, image);

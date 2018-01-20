@@ -1,6 +1,8 @@
 
-package command;
+package command.add;
 
+import command.ActionCommand;
+import command.reg_login.LoginCommand;
 import entity.Article;
 import entity.Comment;
 import entity.User;
@@ -18,7 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import session.ArticleFacade;
 import session.CommentFacade;
-import session.UserFacade;
 
 /**
  *

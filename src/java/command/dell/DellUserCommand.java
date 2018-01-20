@@ -1,8 +1,9 @@
 
-package command;
+package command.dell;
 
 import classes.Cryptography;
-import entity.Article;
+import command.ActionCommand;
+import command.admin.AdminCommand;
 import entity.User;
 import java.util.List;
 import java.util.ResourceBundle;

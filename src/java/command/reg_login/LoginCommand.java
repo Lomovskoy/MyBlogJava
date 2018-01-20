@@ -1,6 +1,8 @@
-package command;
+package command.reg_login;
 
 import classes.Cryptography;
+import command.ActionCommand;
+import command.admin.AdminCommand;
 import entity.User;
 import entity.Article;
 import java.text.SimpleDateFormat;
@@ -58,10 +60,10 @@ public class LoginCommand implements ActionCommand {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         request.setAttribute("dateFormat", dateFormat);
         request.setAttribute("articles", articles);
-        
+
         if (session.getAttribute("user") == null) {
             if ((user != null) && (Cryptography.comparePasssword(password, user.getPassword(), user.getSalts()))) {
-                
+
                 if (user.getActive() || user.getRole().getRoles().equals("ADMIN")) {
                     session.setAttribute("user", user);
                     request.setAttribute("info", "Вход произведён");
@@ -75,7 +77,7 @@ public class LoginCommand implements ActionCommand {
                         session.setAttribute("admin", false);
                         return page;
                     }
-                }else{
+                } else {
                     request.setAttribute("info", "Вы заблокированны");
                 }
             } else {
@@ -89,7 +91,6 @@ public class LoginCommand implements ActionCommand {
                 page = resourceBundle.getString("page.index");
             }
         }
-        
         return page;
 
     }

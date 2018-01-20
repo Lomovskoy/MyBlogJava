@@ -1,5 +1,6 @@
-package command;
+package command.dell;
 
+import command.ActionCommand;
 import entity.Article;
 import entity.Comment;
 import entity.User;

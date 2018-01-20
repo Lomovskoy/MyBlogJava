@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Дек 20 2017 г., 19:53
--- Версия сервера: 10.1.28-MariaDB
--- Версия PHP: 7.1.10
+-- Время создания: Янв 15 2018 г., 09:28
+-- Версия сервера: 10.1.26-MariaDB
+-- Версия PHP: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -85,11 +85,11 @@ INSERT INTO `comment` (`ID`, `comment`, `publicdate`, `ARTICLE_ID`, `AUTHOR_ID`)
 (39, 'qweqwe', '2017-12-07 10:44:06', 6, 5),
 (40, 'неплохой стих', '2017-12-11 09:50:31', 3, 2),
 (41, 'Ну как неплохой список у меня получился?', '2017-12-20 19:18:20', 9, 3),
-(42, 'Да и правда полезная статья, ждём продолжения', '2017-12-20 19:23:02', 9, 1),
 (43, 'Да ну маловато информации, вы, что давай подробнее!!!', '2017-12-20 19:24:05', 9, 2),
 (44, 'Ну и что тут такого - человек постарался!!!', '2017-12-20 20:12:19', 9, 14),
 (45, 'Да стоит признать!', '2017-12-20 20:13:56', 9, 15),
-(46, 'Ну что вы тут развели?', '2017-12-20 20:26:57', 9, 13);
+(46, 'Ну что вы тут развели?', '2017-12-20 20:26:57', 9, 13),
+(48, 'Да и правда полезная статья, ждём продолжения!!!!!!!', '2017-12-30 13:13:44', 9, 1);
 
 -- --------------------------------------------------------
 
@@ -114,24 +114,6 @@ INSERT INTO `role` (`ID`, `roles`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `sequence`
---
-
-CREATE TABLE `sequence` (
-  `SEQ_NAME` varchar(50) NOT NULL,
-  `SEQ_COUNT` decimal(38,0) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `sequence`
---
-
-INSERT INTO `sequence` (`SEQ_NAME`, `SEQ_COUNT`) VALUES
-('SEQ_GEN', '0');
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `user`
 --
 
@@ -142,21 +124,22 @@ CREATE TABLE `user` (
   `password` varchar(255) DEFAULT NULL,
   `salts` varchar(255) DEFAULT NULL,
   `ROLE_ID` bigint(20) DEFAULT NULL,
-  `email` varchar(255) NOT NULL
+  `email` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `user`
 --
 
-INSERT INTO `user` (`ID`, `active`, `login`, `password`, `salts`, `ROLE_ID`, `email`) VALUES
-(1, 1, 'admin', 'a8829436d429eb6affce20b89d2b93250f76c2c7231cc3235977172c83ed03bd', 'bf2a28bf853542c3d0334e596d1586e9', 1, 'lomovskoy.kirill@yandex.ru'),
-(2, 1, 'user', 'efb71f6d1b6bc50e47665a9ebba760037ccdb4ae4ce7704b1d05fe28ec18307f', '8ec9245275823cbb77a4656fdf61b18f', 2, 'imxo2@rambler.ru'),
-(3, 1, 'editor', '9077a22f2efa6fde1f58a6942e6d7cb810454bad8c7ac8fa56c84b49f66950f8', 'a1a62575806d740ff097091a6ee086c', 3, 'wivi@gmail.ru'),
-(5, 0, 'teacher', 'f710c26f8783f4082821d502559703a633dec727f5dedb1128e8abe7f29f959b', '83b8ecf494741994241a995e48b22b92', 2, 'freedognight@gmaol.ru'),
-(13, 1, 'imxo', '2d0d6d7c93a9b734be3aa409976c8ea38e7dfbd27738c59192993744ab0eb2ce', 'c3e450f14cccd1d668500ccaa90ef04a', 2, 'imxo@rambler.ru'),
-(14, 1, 'admin2', '72e92b67754f2f751e0b34474dbfeb3180e77c49ca53f51b720cbd4af772d29d', '8643786725a83612633aea58a8cfabfd', 1, 'email@mail.ru'),
-(15, 1, 'editor2', 'eb2d8f5eadb323da1a7adc734fd37f6352a2e9736ba53d5aa1d498dc8e3802c2', '3327441593bc1b33530e34d3f8927492', 3, 'zhikharev87@gmail.com');
+INSERT INTO `user` (`ID`, `active`, `login`, `password`, `salts`, `ROLE_ID`, `email`, `image`) VALUES
+(1, 1, 'admin', 'a8829436d429eb6affce20b89d2b93250f76c2c7231cc3235977172c83ed03bd', 'bf2a28bf853542c3d0334e596d1586e9', 1, 'lomovskoy.kirill@yandex.ru', '1.png'),
+(2, 1, 'user', 'efb71f6d1b6bc50e47665a9ebba760037ccdb4ae4ce7704b1d05fe28ec18307f', '8ec9245275823cbb77a4656fdf61b18f', 2, 'imxo2@rambler.ru', '2.png'),
+(3, 1, 'editor', '9077a22f2efa6fde1f58a6942e6d7cb810454bad8c7ac8fa56c84b49f66950f8', 'a1a62575806d740ff097091a6ee086c', 3, 'wivi@gmail.ru', 'wicca2.png'),
+(5, 0, 'teacher', '37c978241806fe96ca5cac8ce4642620', '83b8ecf494741994241a995e48b22b92', 2, 'freedognight@gmaol.ru', 'delete.png'),
+(13, 1, 'imxo', '2d0d6d7c93a9b734be3aa409976c8ea38e7dfbd27738c59192993744ab0eb2ce', 'c3e450f14cccd1d668500ccaa90ef04a', 2, 'imxo@rambler.ru', 'no-image.png'),
+(14, 1, 'admin2', '72e92b67754f2f751e0b34474dbfeb3180e77c49ca53f51b720cbd4af772d29d', '8643786725a83612633aea58a8cfabfd', 1, 'email@mail.ru', 'no-image.png'),
+(15, 1, 'editor2', 'eb2d8f5eadb323da1a7adc734fd37f6352a2e9736ba53d5aa1d498dc8e3802c2', '3327441593bc1b33530e34d3f8927492', 3, 'zhikharev87@gmail.com', 'no-image.png');
 
 --
 -- Индексы сохранённых таблиц
@@ -184,12 +167,6 @@ ALTER TABLE `role`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Индексы таблицы `sequence`
---
-ALTER TABLE `sequence`
-  ADD PRIMARY KEY (`SEQ_NAME`);
-
---
 -- Индексы таблицы `user`
 --
 ALTER TABLE `user`
@@ -207,25 +184,21 @@ ALTER TABLE `user`
 --
 ALTER TABLE `article`
   MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
 --
 -- AUTO_INCREMENT для таблицы `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
-
+  MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT для таблицы `role`
 --
 ALTER TABLE `role`
   MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
   MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --

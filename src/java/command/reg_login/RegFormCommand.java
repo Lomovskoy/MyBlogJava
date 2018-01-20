@@ -1,6 +1,7 @@
 
-package command;
+package command.reg_login;
 
+import command.ActionCommand;
 import java.util.ResourceBundle;
 import javax.servlet.http.HttpServletRequest;
 

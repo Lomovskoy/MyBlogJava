@@ -1,6 +1,8 @@
 package controller;
 
-import command.UpdateFileFormCommand;
+import classes.Cryptography;
+import command.add.UpdateFileFormCommand;
+import entity.User;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -9,6 +11,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import resours.FileDirectoriesManager;
 
-
 /**
  *
  * @author imxo
@@ -26,9 +28,10 @@ import resours.FileDirectoriesManager;
 @WebServlet(name = "FileUploadController", urlPatterns = {"/upload"})
 @MultipartConfig
 public class FileUploadServlet extends HttpServlet {
-    private final static Logger LOGGER = 
-            Logger.getLogger(FileUploadServlet.class.getCanonicalName());
-    
+
+    private final static Logger LOGGER
+            = Logger.getLogger(FileUploadServlet.class.getCanonicalName());
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,16 +45,16 @@ public class FileUploadServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
-        final String path = request.getServletContext().getRealPath("")+File.separator
-                +FileDirectoriesManager.getProperty("dir")+File.separator
-                    +FileDirectoriesManager.getProperty("files");
+
+        final String path = request.getServletContext().getRealPath("") + File.separator
+                + FileDirectoriesManager.getProperty("dir") + File.separator
+                + FileDirectoriesManager.getProperty("files");
         final Part filePart = request.getPart("file");
-        final String fileName = (String) getFileName(filePart);
+        final String fileName = getNewFileName(getFileName(filePart));
 
         OutputStream out = null;
         InputStream filecontent = null;
-        
+
         try {
             out = new FileOutputStream(new File(path + File.separator
                     + fileName));
@@ -63,11 +66,11 @@ public class FileUploadServlet extends HttpServlet {
             while ((read = filecontent.read(bytes)) != -1) {
                 out.write(bytes, 0, read);
             }
-           
-            LOGGER.log(Level.INFO, "Файл {0} начал загружаться в {1}", 
+
+            LOGGER.log(Level.INFO, "Файл {0} начал загружаться в {1}",
                     new Object[]{fileName, path});
         } catch (FileNotFoundException fne) {
-            LOGGER.log(Level.SEVERE, "Проблемы загрузки файла. Error: {0}", 
+            LOGGER.log(Level.SEVERE, "Проблемы загрузки файла. Error: {0}",
                     new Object[]{fne.getMessage()});
         } finally {
             if (out != null) {
@@ -76,13 +79,13 @@ public class FileUploadServlet extends HttpServlet {
             if (filecontent != null) {
                 filecontent.close();
             }
-            
+
         }
-        
+
         UpdateFileFormCommand ufc = new UpdateFileFormCommand();
         //!!!!
         ufc.execute(request);
-        
+
         //request.getRequestDispatcher("/WEB-INF/admin/admin_upload_file.jsp").forward(request, response);
         response.sendRedirect("?page=addfile");
     }
@@ -97,6 +100,16 @@ public class FileUploadServlet extends HttpServlet {
             }
         }
         return null;
+    }
+
+    private String getNewFileName(String oldFileName) {
+        String[] splitByTochka = oldFileName.split(Pattern.quote("."));
+        System.out.println(oldFileName);
+        System.out.println(splitByTochka.length);
+        String fileType = splitByTochka[splitByTochka.length - 1];
+
+        String filename = Cryptography.getSalts();
+        return filename + "."+fileType;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

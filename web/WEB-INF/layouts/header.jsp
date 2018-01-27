@@ -20,6 +20,12 @@
         <link href="template/css/bootstrap-reboot.min.css" rel="stylesheet">
         <link href="template/css/font-awesome.min.css" rel="stylesheet">
         <link href="template/css/mystyle.css" rel="stylesheet">
+        <c:if test="${not empty redirect}">
+            <%--<% response.sendRedirect(${redirect}); %>--%>
+            <script>
+                window.location.href = '${redirect}';
+            </script>
+        </c:if>
     </head>
     <body>
         <header class="mt-2">
@@ -44,7 +50,7 @@
                             <ul class="navbar-nav">
                                 <li class="nav-item active">
                                     <a class="nav-link" href='#'>Приветствую: ${user.getLogin()} <img src="imageServlet/${user.image}" alt="Photo" class="rounded-circle" style="height: 30px"></a>
-                                    
+
                                 </li>
                             </ul>
                             <c:if test='${user.getRole().getRoles().equals("ADMIN")}'>

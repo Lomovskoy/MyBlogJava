@@ -18,17 +18,18 @@
 
         <div class="form-group">
             <label for="exampleInputLogin">Ваш логин на сайте</label>
-            <input type="text" class="form-control" name="login" placeholder="Enter login">
+            <input type="text" class="form-control" name="login" placeholder="Enter login" value="${login}">
             <small id="emailHelp" class="form-text text-muted">Ваш логин должен быть уникальным.</small>
         </div>
         <div class="form-group">
             <label for="exampleInputLogin">Ваш email на сайте</label>
-            <input type="email" class="form-control" name="email" placeholder="Enter email">
+            <input type="email" class="form-control" name="email" placeholder="Enter email" value="${email}">
             <small id="emailHelp" class="form-text text-muted">Ваша почта должна быть уникальной.</small>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Введите пароль для сайта</label>
             <input type="password" class="form-control" name="password1" placeholder="Enter password">
+            <small id="emailHelp" class="form-text text-muted">Пароль должен быть не менее 7 символов</small>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Повторите пароль для сайта</label>

@@ -1,4 +1,3 @@
-
 package command.reg_login;
 
 import command.ActionCommand;

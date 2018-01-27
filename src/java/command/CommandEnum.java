@@ -19,6 +19,7 @@ import command.update.ChangeInformationCommand;
 import command.update.ChangeInformationFormCommand;
 import command.update.UpdateArticleCommand;
 import command.update.UpdateCommentCommand;
+import command.update.UpdateCommentFormCommand;
 import command.update.UpdateFormArticleCommand;
 
 /**
@@ -49,6 +50,7 @@ public enum CommandEnum {
     UPDATEUSER{{this.command = new UpdateUserCommand();}},
     ADDCOMMENT{{this.command = new AddCommentCommand();}},
     DELLCOMMENT{{this.command = new DellCommentCommand();}},
+    UPDATECOMMENTFORM{{this.command = new UpdateCommentFormCommand();}},
     UPDATECOMMENT{{this.command = new UpdateCommentCommand();}},
     ADDFILE{{this.command = new UpdateFileFormCommand();}},
     DELLIMAGE{{this.command = new DellImageCommand();}},

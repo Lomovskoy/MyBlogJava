@@ -4,6 +4,7 @@ import command.ActionCommand;
 import command.reg_login.LoginCommand;
 import entity.User;
 import entity.Article;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
@@ -49,12 +50,12 @@ public class AddArticleCommand implements ActionCommand{
         }
         
         Calendar date = new GregorianCalendar(); //date.getTime()
-        Article article = new Article(caption, content, date.getTime(), user, active);
+        Article article = new Article(caption, content, date.getTime(), user, active,new ArrayList<>());
         articleFasade.create(article);
         
         LoginCommand logCom = new LoginCommand();
         logCom.execute(request);
-        
+        request.setAttribute("redirect", "?page=login");
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
         String page = resourceBundle.getString("page.adminpage");
         return page;

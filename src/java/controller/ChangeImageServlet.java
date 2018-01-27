@@ -1,4 +1,3 @@
-
 package controller;
 
 import command.add.UpdateFileFormCommand;
@@ -35,7 +34,9 @@ public class ChangeImageServlet extends HttpServlet {
     private final static Logger LOGGER
             = Logger.getLogger(FileUploadServlet.class.getCanonicalName());
     //private UserFacade userFasade;
-    @EJB UserFacade userFasade;
+    @EJB
+    UserFacade userFasade;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -78,28 +79,27 @@ public class ChangeImageServlet extends HttpServlet {
 
                 //-------------------------------------
                 String name = user.getImage();
-                
-                if (!"no-image.png".equals(name)){
-                String filePath = request.getServletContext().getRealPath("") + File.separator
-                        + FileDirectoriesManager.getProperty("dir") + File.separator
-                        + FileDirectoriesManager.getProperty("image");
 
-                File file = new File(filePath + '/' + name);
-                file.delete();
+                if (!"no-image.png".equals(name)) {
+                    String filePath = request.getServletContext().getRealPath("") + File.separator
+                            + FileDirectoriesManager.getProperty("dir") + File.separator
+                            + FileDirectoriesManager.getProperty("image");
 
-                path = request.getServletContext().getRealPath("") + File.separator
-                        + FileDirectoriesManager.getProperty("dir") + File.separator
-                        + FileDirectoriesManager.getProperty("image");
+                    File file = new File(filePath + '/' + name);
+                    file.delete();
 
-                File folder = new File(path);
-                File[] listOfFiles = folder.listFiles();
-                request.setAttribute("images", listOfFiles);
+                    path = request.getServletContext().getRealPath("") + File.separator
+                            + FileDirectoriesManager.getProperty("dir") + File.separator
+                            + FileDirectoriesManager.getProperty("image");
+
+                    File folder = new File(path);
+                    File[] listOfFiles = folder.listFiles();
+                    request.setAttribute("images", listOfFiles);
                 }
                 //------------------
                 user.setImage(fileName);
                 userFasade.edit(user);
                 session.setAttribute("user", user);
-                
 
             } catch (FileNotFoundException fne) {
                 LOGGER.log(Level.SEVERE, "Проблемы загрузки файла. Error: {0}",
@@ -132,17 +132,20 @@ public class ChangeImageServlet extends HttpServlet {
         }
         return null;
     }
-    
+
     private String getNewFileName(String oldFileName, HttpServletRequest request) {
         String[] splitByTochka = oldFileName.split(Pattern.quote("."));
         System.out.println(oldFileName);
         System.out.println(splitByTochka.length);
         String fileType = splitByTochka[splitByTochka.length - 1];
-        HttpSession session = request.getSession(false);
-        User user = (User) session.getAttribute("user");
-        
-        Long filename = user.getId();
-        return filename + "."+fileType;
+        if ("jpg".equals(fileType) || "png".equals(fileType) || "gif".equals(fileType)) {
+            HttpSession session = request.getSession(false);
+            User user = (User) session.getAttribute("user");
+
+            Long filename = user.getId();
+            return filename + "." + fileType;
+        }
+        return null;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

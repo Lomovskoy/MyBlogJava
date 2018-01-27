@@ -2,14 +2,11 @@
 package command.add;
 
 import command.ActionCommand;
-import command.reg_login.LoginCommand;
 import entity.Article;
 import entity.Comment;
 import entity.User;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,24 +52,14 @@ public class AddCommentCommand implements ActionCommand{
             Calendar publicdate = new GregorianCalendar();
             Article article = articleFasade.find(articleId);
 
-            Comment comment = new Comment(user, article, commentStr, publicdate.getTime());
-            commentFacade.create(comment);
-
-            LoginCommand logCom = new LoginCommand();
-            logCom.execute(request);
-
-            request.setAttribute("article", article);
-            List<Comment> commentDB = commentFacade.findById(article);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-            request.setAttribute("dateFormat", dateFormat);
-            request.setAttribute("comments", commentDB);
-
+            Comment comment = new Comment(user, commentStr, publicdate.getTime());
+            article.getComments().add(comment);
+            articleFasade.edit(article);
+            request.setAttribute("redirect", "?page=showOneArticle&id="+article.getId());
         }
         else{
             Article article = articleFasade.find(articleId);
             request.setAttribute("article", article);
-            List<Comment> commentDB = commentFacade.findById(article);
-            request.setAttribute("comments", commentDB);
             request.setAttribute("info", "Строка комментария должна быть не пустой <br>или его длинна должна быть меньше 2000 символов");
         }      
         

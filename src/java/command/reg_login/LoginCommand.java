@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import session.UserFacade;
 import session.ArticleFacade;
-import session.RoleFacade;
 
 /**
  *
@@ -28,7 +27,6 @@ public class LoginCommand implements ActionCommand {
 
     private UserFacade userFasade;
     private ArticleFacade articleFasade;
-    private RoleFacade roleFasade;
 
     public LoginCommand() {
         Context context;
@@ -36,7 +34,6 @@ public class LoginCommand implements ActionCommand {
             context = new InitialContext();
             this.userFasade = (UserFacade) context.lookup("java:module/UserFacade");
             this.articleFasade = (ArticleFacade) context.lookup("java:module/ArticleFacade");
-            this.roleFasade = (RoleFacade) context.lookup("java:module/RoleFacade");
         } catch (NamingException ex) {
             Logger.getLogger(AdminCommand.class.getName()).log(Level.SEVERE, "Не удалось сессионный бин ", ex);
         }
@@ -52,7 +49,8 @@ public class LoginCommand implements ActionCommand {
         User user = this.userFasade.findByLogin(login);
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
         String page = resourceBundle.getString("page.adminlogin");
-
+        session.setAttribute("login", login);
+        
         List<Article> articles = articleFasade.findAll();
         Collections.reverse(articles);
         request.setAttribute("articles", articles);

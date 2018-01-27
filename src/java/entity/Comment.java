@@ -28,10 +28,6 @@ public class Comment implements Serializable{
     @JoinColumn(name = "author")
     private User author;
     
-    @OneToOne()
-    @JoinColumn(name = "article")
-    private Article article;
-    
     @Column(length = 2000, name = "comment")
     private String comment;
 
@@ -42,9 +38,8 @@ public class Comment implements Serializable{
     public Comment() {
     }
 
-    public Comment(User author, Article article, String comment, Date publicdate) {
+    public Comment(User author, String comment, Date publicdate) {
         this.author = author;
-        this.article = article;
         this.comment = comment;
         this.publicdate = publicdate;
     }
@@ -63,14 +58,6 @@ public class Comment implements Serializable{
 
     public void setAuthor(User author) {
         this.author = author;
-    }
-
-    public Article getArticle() {
-        return article;
-    }
-
-    public void setArticle(Article article) {
-        this.article = article;
     }
 
     public String getComment() {
@@ -92,11 +79,10 @@ public class Comment implements Serializable{
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.id);
-        hash = 17 * hash + Objects.hashCode(this.author);
-        hash = 17 * hash + Objects.hashCode(this.article);
-        hash = 17 * hash + Objects.hashCode(this.comment);
-        hash = 17 * hash + Objects.hashCode(this.publicdate);
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.author);
+        hash = 59 * hash + Objects.hashCode(this.comment);
+        hash = 59 * hash + Objects.hashCode(this.publicdate);
         return hash;
     }
 
@@ -121,9 +107,6 @@ public class Comment implements Serializable{
         if (!Objects.equals(this.author, other.author)) {
             return false;
         }
-        if (!Objects.equals(this.article, other.article)) {
-            return false;
-        }
         if (!Objects.equals(this.publicdate, other.publicdate)) {
             return false;
         }
@@ -132,10 +115,7 @@ public class Comment implements Serializable{
 
     @Override
     public String toString() {
-        return "Comment{" + "id=" + id + ", author=" + author.toString() + ", article=" + article.toString() + ", comment=" + comment + ", publicdate=" + publicdate + '}';
+        return "Comment{" + "id=" + id + ", author=" + author + ", comment=" + comment + ", publicdate=" + publicdate + '}';
     }
-
-    
-    
     
 }

@@ -42,7 +42,8 @@
         </form>
         <form class="col-4 mt-4 p-4 border border-secondary rounded ml-auto mr-3" action="changeimage" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="exampleFormControlFile1">Example file input</label>
+                <label for="exampleFormControlFile1">Загрузите картинку на аватар</label>
+                <small id="emailHelp" class="form-text text-muted">Картинка должна быть png или jpg или gif.</small>
                 <input type="file" class="form-control-file" name="image">
             </div>
             <div class="row m-0 mt-2">

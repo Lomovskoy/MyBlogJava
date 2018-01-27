@@ -15,6 +15,7 @@
     <form class="col-4 mr-auto mt-4 p-4 border border-secondary rounded container" action="upload" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="exampleFormControlFile1">выберете файл</label>
+            <small id="emailHelp" class="form-text text-muted">Картинка должна быть jpg.</small>
             <input type="file" class="form-control-file" name="file">
         </div>
         <div class="row m-0 mt-2">

@@ -1,4 +1,3 @@
-
 package command.update;
 
 import command.ActionCommand;

@@ -3,6 +3,8 @@ package command.add;
 
 import command.ActionCommand;
 import java.io.File;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import javax.servlet.http.HttpServletRequest;
 import resours.FileDirectoriesManager;
@@ -21,7 +23,8 @@ public class UpdateFileFormCommand implements ActionCommand{
         
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
-
+        
+        Arrays.sort(listOfFiles,Collections.reverseOrder());
         /*for (File file : listOfFiles) {
             if (file.isFile()) {
                 System.out.println(file.getName());

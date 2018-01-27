@@ -1,15 +1,10 @@
-
 package resours;
 
-/**
- *
- * @author pupil
- */
 import java.util.ResourceBundle;
 
 /**
  *
- * @author jvm
+ * @author imxo
  */
 public class FileDirectoriesManager {
     private final static ResourceBundle resourceBundle = ResourceBundle.getBundle("properties.fileDirectories");

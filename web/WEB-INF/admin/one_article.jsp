@@ -28,11 +28,15 @@
         </div>
     </div>
     <hr>
+    <c:if test="${empty user}">
+        <small class="text-danger ml-auto">Что бы оставить комментарий, зарегистрируйтесь.</small>
+    </c:if>
+    <c:if test="${not empty user}">
     <div class="ml-auto col-9">
         <form class="mb-2" action="?page=addcomment&articleid=${article.id}" method="POST">
             <div class="form-group">
                 <label for="exampleInputEmail1">Комментарий</label>
-                <textarea type="text" class="form-control" name="comment">${changeComments.comment}</textarea>
+                <textarea type="text" class="form-control" name="comment">${changeComments.toString()}</textarea>
                 <small class="form-text text-muted">Здесь вы можете оставить свой комментарий</small>
                 <small class="form-text text-info">${info}</small>
             </div>
@@ -41,6 +45,7 @@
             </div>
         </form>
     </div>
+    </c:if>
     <div>
         <c:forEach var="comment" items="${comments}">
             <c:if test="${user.id == comment.author.id}">
@@ -53,7 +58,7 @@
                         <p class="text-center m-0 p-0">Ответ автора</p>
                         <hr class="m-0 p-0">
                     </c:if>
-                        <img src="imageServlet/${comment.author.image}" alt="Photo" class="rounded-circle" style="height: 35px">
+                    <img src="imageServlet/${comment.author.image}" alt="Photo" class="rounded-circle" style="height: 35px">
                     <c:if test='${comment.author.getRole().getRoles().equals("ADMIN")}'>
                         <span class="badge badge-pill badge-danger mb-0">admin</span>
                     </c:if>
@@ -71,7 +76,7 @@
                         </span>
                         <c:if test='${user.getRole().getRoles().equals("ADMIN")}'>
                             <c:if test='${user.id == comment.author.id }'>
-                                <a class="fa fa-check m-0 mt-3" href="?page=updatecomment&commentid=${comment.id}&articleid=${article.id}"></a> 
+                                <a class="fa fa-check m-0 mt-3" href="?page=updatecommentform&commentid=${comment.id}&articleid=${article.id}"></a> 
                                 <a class="fa fa-times m-0 mt-3" href="?page=dellcomment&commentid=${comment.id}&articleid=${article.id}"></a>
                             </c:if>
                             <c:if test='${comment.author.getRole().getRoles() != ("ADMIN")}'>
@@ -80,13 +85,13 @@
                         </c:if>
 
                         <c:if test='${user.getRole().getRoles() != ("ADMIN") && user.getRole().getRoles() != ("EDITOR") && user.id == comment.author.id }'>
-                            <a class="fa fa-check m-0 mt-3" href="?page=updatecomment&commentid=${comment.id}&articleid=${article.id}"></a>
+                            <a class="fa fa-check m-0 mt-3" href="?page=updatecommentform&commentid=${comment.id}&articleid=${article.id}"></a>
                             <a class="fa fa-times m-0 mt-3" href="?page=dellcomment&commentid=${comment.id}&articleid=${article.id}"></a>
                         </c:if>
 
                         <c:if test='${user.getRole().getRoles().equals("EDITOR")}'>
                             <c:if test='${user.id == comment.author.id }'>
-                                <a class="fa fa-check m-0 mt-3" href="?page=updatecomment&commentid=${comment.id}&articleid=${article.id}"></a> 
+                                <a class="fa fa-check m-0 mt-3" href="?page=updatecommentform&commentid=${comment.id}&articleid=${article.id}"></a> 
                                 <a class="fa fa-times m-0 mt-3" href="?page=dellcomment&commentid=${comment.id}&articleid=${article.id}"></a>
                             </c:if>
                             <c:if test='${comment.author.getRole().getRoles() != ("ADMIN") && comment.author.getRole().getRoles() != ("EDITOR")}'>

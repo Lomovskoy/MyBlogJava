@@ -1,8 +1,6 @@
 package controller;
 
-import classes.Cryptography;
 import command.add.UpdateFileFormCommand;
-import entity.User;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -50,42 +48,43 @@ public class FileUploadServlet extends HttpServlet {
                 + FileDirectoriesManager.getProperty("dir") + File.separator
                 + FileDirectoriesManager.getProperty("files");
         final Part filePart = request.getPart("file");
-        final String fileName = getNewFileName(getFileName(filePart));
+        final String fileName = getNewFileName(request, getFileName(filePart));
 
-        OutputStream out = null;
-        InputStream filecontent = null;
+        if (fileName != null) {
+            OutputStream out = null;
+            InputStream filecontent = null;
 
-        try {
-            out = new FileOutputStream(new File(path + File.separator
-                    + fileName));
-            filecontent = filePart.getInputStream();
+            try {
+                out = new FileOutputStream(new File(path + File.separator
+                        + fileName));
+                filecontent = filePart.getInputStream();
 
-            int read = 0;
-            final byte[] bytes = new byte[1024];
+                int read = 0;
+                final byte[] bytes = new byte[1024];
 
-            while ((read = filecontent.read(bytes)) != -1) {
-                out.write(bytes, 0, read);
+                while ((read = filecontent.read(bytes)) != -1) {
+                    out.write(bytes, 0, read);
+                }
+
+                LOGGER.log(Level.INFO, "Файл {0} начал загружаться в {1}",
+                        new Object[]{fileName, path});
+            } catch (FileNotFoundException fne) {
+                LOGGER.log(Level.SEVERE, "Проблемы загрузки файла. Error: {0}",
+                        new Object[]{fne.getMessage()});
+            } finally {
+                if (out != null) {
+                    out.close();
+                }
+                if (filecontent != null) {
+                    filecontent.close();
+                }
+
             }
 
-            LOGGER.log(Level.INFO, "Файл {0} начал загружаться в {1}",
-                    new Object[]{fileName, path});
-        } catch (FileNotFoundException fne) {
-            LOGGER.log(Level.SEVERE, "Проблемы загрузки файла. Error: {0}",
-                    new Object[]{fne.getMessage()});
-        } finally {
-            if (out != null) {
-                out.close();
-            }
-            if (filecontent != null) {
-                filecontent.close();
-            }
-
+            UpdateFileFormCommand ufc = new UpdateFileFormCommand();
+            //!!!!
+            ufc.execute(request);
         }
-
-        UpdateFileFormCommand ufc = new UpdateFileFormCommand();
-        //!!!!
-        ufc.execute(request);
-
         //request.getRequestDispatcher("/WEB-INF/admin/admin_upload_file.jsp").forward(request, response);
         response.sendRedirect("?page=addfile");
     }
@@ -102,14 +101,27 @@ public class FileUploadServlet extends HttpServlet {
         return null;
     }
 
-    private String getNewFileName(String oldFileName) {
+    private String getNewFileName(HttpServletRequest request, String oldFileName) {
         String[] splitByTochka = oldFileName.split(Pattern.quote("."));
         System.out.println(oldFileName);
         System.out.println(splitByTochka.length);
         String fileType = splitByTochka[splitByTochka.length - 1];
-
-        String filename = Cryptography.getSalts();
-        return filename + "."+fileType;
+        
+        if ("jpg".equals(fileType)) {
+            //String filename = Cryptography.getSalts();
+            //return oldFileName + "." + fileType;
+            String path = request.getServletContext().getRealPath("")+File.separator
+                +FileDirectoriesManager.getProperty("dir")+File.separator
+                    +FileDirectoriesManager.getProperty("files");
+        
+            File folder = new File(path);
+            File[] listOfFiles = folder.listFiles();
+            Integer filename = (listOfFiles.length + 1);
+            
+            String newfilename = Integer.toString(filename);
+            return newfilename + "." + fileType;
+        }
+        return null;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

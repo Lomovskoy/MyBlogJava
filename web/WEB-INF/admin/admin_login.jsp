@@ -10,14 +10,14 @@
 <%@include file = "../layouts/header.jsp" %>
 <div class="container ">
     <br>
-    <h4 class="text-center text-dark">Вход в панель администратора</h4>
+    <h4 class="text-center text-dark">Панель входа на сайт</h4>
     <hr>
     <p class="text-center">${info}</p>
     <form class="col-4 mt-4 p-4 border border-secondary rounded container" action="?page=login" method="POST">
 
         <div class="form-group">
             <label for="exampleInputEmail1">Login</label>
-            <input type="text" class="form-control" name="login" placeholder="Enter login">
+            <input type="text" class="form-control" name="login" placeholder="Enter login" value="${login}">
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Password</label>

@@ -2,6 +2,8 @@ package command.add;
 
 import command.ActionCommand;
 import java.io.File;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import javax.servlet.http.HttpServletRequest;
 import resours.FileDirectoriesManager;
@@ -22,7 +24,7 @@ public class AddFormCommand implements ActionCommand{
         
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
-        
+        Arrays.sort(listOfFiles,Collections.reverseOrder());
         request.setAttribute("images", listOfFiles);
         
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");

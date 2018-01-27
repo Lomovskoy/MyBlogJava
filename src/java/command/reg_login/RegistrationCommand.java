@@ -41,12 +41,14 @@ public class RegistrationCommand implements ActionCommand {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
         String page = resourceBundle.getString("page.adminlogin");
 
-        String login = (String) request.getParameter("login");
-        String email = (String) request.getParameter("email");
+        String login = (String) request.getParameter("login").replaceAll("\\s+","");
+        String email = (String) request.getParameter("email").replaceAll("\\s+","");
         String password1 = (String) request.getParameter("password1");
         String password2 = (String) request.getParameter("password2");
+        request.setAttribute("login", login);
+        request.setAttribute("email", email);
 
-        if (login != "" && password1 != "" && password2 != "" && email != "") {
+        if (!"".equals(login) && !"".equals(password1) && !"".equals(password2) && !"".equals(email)) {
 
             if (password1.equals(password2)) {
 
@@ -64,7 +66,7 @@ public class RegistrationCommand implements ActionCommand {
                     flag += 1;
                 }
                 if (password1.length() <= 6) {
-                    request.setAttribute("info", "Пароль слишком короткий мин 6 символов");
+                    request.setAttribute("info", "Пароль слишком короткий мин 7 символов");
                     page = resourceBundle.getString("page.regform");
                     flag += 1;
                 }
@@ -83,6 +85,7 @@ public class RegistrationCommand implements ActionCommand {
                         roleFasade.create(role1);
                         roleFasade.create(role2);
                         roleFasade.create(role3);
+                        idUser = 1L;
                     }
 
                     role = roleFasade.find(idUser);

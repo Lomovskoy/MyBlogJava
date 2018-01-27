@@ -2,19 +2,20 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "article")
@@ -30,7 +31,7 @@ public class Article implements Serializable {
     @Column(length = 255, name = "caption")
     private String caption;
     
-    @Column(length = 21500, name = "content")//21845
+    @Column(columnDefinition = "TEXT", name = "content")//21845
     private String content;
     
     @Column(name = "publicdate")
@@ -43,16 +44,20 @@ public class Article implements Serializable {
     
     @Column(name = "active")
     private Boolean active;
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Comment> comments;
 
     public Article() {
     }
 
-    public Article(String caption, String content, Date publicdate, User author, Boolean active) {
+    public Article(String caption, String content, Date publicdate, User author, Boolean active, List<Comment> comments) {
         this.caption = caption;
         this.content = content;
         this.publicdate = publicdate;
         this.author = author;
         this.active = active;
+        this.comments = comments;
     }
 
     public Long getId() {
@@ -103,15 +108,24 @@ public class Article implements Serializable {
         this.active = active;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.caption);
-        hash = 53 * hash + Objects.hashCode(this.content);
-        hash = 53 * hash + Objects.hashCode(this.publicdate);
-        hash = 53 * hash + Objects.hashCode(this.author);
-        hash = 53 * hash + Objects.hashCode(this.active);
+        hash = 61 * hash + Objects.hashCode(this.id);
+        hash = 61 * hash + Objects.hashCode(this.caption);
+        hash = 61 * hash + Objects.hashCode(this.content);
+        hash = 61 * hash + Objects.hashCode(this.publicdate);
+        hash = 61 * hash + Objects.hashCode(this.author);
+        hash = 61 * hash + Objects.hashCode(this.active);
+        hash = 61 * hash + Objects.hashCode(this.comments);
         return hash;
     }
 
@@ -145,12 +159,15 @@ public class Article implements Serializable {
         if (!Objects.equals(this.active, other.active)) {
             return false;
         }
+        if (!Objects.equals(this.comments, other.comments)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Article{" + "id=" + id + ", caption=" + caption + ", content=" + content + ", publicdate=" + publicdate + ", author=" + author.getLogin() + ", active=" + active + '}';
+        return "Article{" + "id=" + id + ", caption=" + caption + ", content=" + content + ", publicdate=" + publicdate + ", author=" + author + ", active=" + active + ", comment=" + comments + '}';
     }
     
 }

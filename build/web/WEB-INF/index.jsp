@@ -32,4 +32,15 @@
         </div>
     </c:if>
 </c:forEach>
+<div class="container">
+    <nav class="mt-3 mx-auto">
+        <ul class="pagination">
+            <li class="page-item<c:if test="${curpage - 1 < 1}"> disabled</c:if>"><a class="page-link" href="?page=index&pagination=${curpage - 1}"><<</a></li>
+                <c:forEach var="page" items="${pages}">
+                    <li class="page-item<c:if test="${page == curpage}"> active</c:if>"><a class="page-link" href="?page=index&pagination=${page}">${page}</a></li>
+                </c:forEach>
+            <li class="page-item<c:if test="${curpage == pagecount}"> disabled</c:if>"><a class="page-link" href="?page=index&pagination=${curpage+1}">>></a></li>
+        </ul>
+    </nav>
+</div>
 <%@include file = "layouts/footer.jsp" %>

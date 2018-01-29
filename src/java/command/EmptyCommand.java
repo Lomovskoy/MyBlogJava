@@ -41,11 +41,32 @@ public class EmptyCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
 
         try {
-            List<Article> articles = articleFasade.findAll();
+            /*List<Article> articles = articleFasade.findAll();
             Collections.reverse(articles);
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
             request.setAttribute("dateFormat", dateFormat);
+            request.setAttribute("articles", articles);*/
+
+            Integer articlesOnPage = 10;
+            Integer pageCurrent = 1;
+            String currentPageString = request.getParameter("pagination");
+            if (currentPageString != null) {
+                pageCurrent = Integer.parseInt(currentPageString);
+            }
+            Integer pageCount = (int) Math.ceil((double) articleFasade.count() / articlesOnPage);
+            Integer[] pageArray = new Integer[pageCount];
+            for (Integer i = 0; i < pageArray.length; i++) {
+                pageArray[i] = i + 1;
+            }
+            Integer articleFrom = articlesOnPage * (pageCurrent - 1);
+            Integer articleTo = (articlesOnPage * pageCurrent);
+            
+            List<Article> articles = articleFasade.findPagination(articleFrom, articleTo);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+            request.setAttribute("dateFormat", dateFormat);
             request.setAttribute("articles", articles);
+            request.setAttribute("pages", pageArray);
+            
         } catch (Exception e) {
             ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
             String page = resourceBundle.getString("page.index");

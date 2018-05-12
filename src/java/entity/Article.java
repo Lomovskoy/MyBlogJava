@@ -27,37 +27,40 @@ public class Article implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    
     @Column(length = 255, name = "caption")
     private String caption;
-    
+
     @Column(columnDefinition = "TEXT", name = "content")//21845
     private String content;
-    
+
     @Column(name = "publicdate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date publicdate;
-    
+
     @OneToOne()
     @JoinColumn(name = "author")
     private User author;
-    
+
     @Column(name = "active")
     private Boolean active;
-    
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Comment> comments;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<User> likes;
 
     public Article() {
     }
 
-    public Article(String caption, String content, Date publicdate, User author, Boolean active, List<Comment> comments) {
+    public Article(String caption, String content, Date publicdate, User author, Boolean active, List<Comment> comments, List<User> likes) {
         this.caption = caption;
         this.content = content;
         this.publicdate = publicdate;
         this.author = author;
         this.active = active;
         this.comments = comments;
+        this.likes = likes;
     }
 
     public Long getId() {
@@ -116,16 +119,25 @@ public class Article implements Serializable {
         this.comments = comments;
     }
 
+    public List<User> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<User> likes) {
+        this.likes = likes;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 61 * hash + Objects.hashCode(this.id);
-        hash = 61 * hash + Objects.hashCode(this.caption);
-        hash = 61 * hash + Objects.hashCode(this.content);
-        hash = 61 * hash + Objects.hashCode(this.publicdate);
-        hash = 61 * hash + Objects.hashCode(this.author);
-        hash = 61 * hash + Objects.hashCode(this.active);
-        hash = 61 * hash + Objects.hashCode(this.comments);
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.caption);
+        hash = 89 * hash + Objects.hashCode(this.content);
+        hash = 89 * hash + Objects.hashCode(this.publicdate);
+        hash = 89 * hash + Objects.hashCode(this.author);
+        hash = 89 * hash + Objects.hashCode(this.active);
+        hash = 89 * hash + Objects.hashCode(this.comments);
+        hash = 89 * hash + Objects.hashCode(this.likes);
         return hash;
     }
 
@@ -162,12 +174,31 @@ public class Article implements Serializable {
         if (!Objects.equals(this.comments, other.comments)) {
             return false;
         }
+        if (!Objects.equals(this.likes, other.likes)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Article{" + "id=" + id + ", caption=" + caption + ", content=" + content + ", publicdate=" + publicdate + ", author=" + author + ", active=" + active + ", comment=" + comments + '}';
+        return "Article{" + "id=" + id + ", caption=" + caption + ", content=" + content + ", publicdate=" + publicdate + ", author=" + author + ", active=" + active + ", comments=" + comments + ", likes=" + likes + '}';
     }
-    
+
+    public int LikesCount() {
+        return likes.size();
+    }
+
+    public boolean LikedByUser(User user) {
+        return likes.contains(user);
+    }
+
+    public void LikeAdd(User user) {
+        likes.add(user);
+    }
+
+    public void LikeDelete(User user) {
+        likes.remove(user);
+    }
+
 }

@@ -50,7 +50,7 @@ public class AddArticleCommand implements ActionCommand{
         }
         
         Calendar date = new GregorianCalendar(); //date.getTime()
-        Article article = new Article(caption, content, date.getTime(), user, active,new ArrayList<>());
+        Article article = new Article(caption, content, date.getTime(), user, active, new ArrayList<>(), new ArrayList<>());
         articleFasade.create(article);
         
         LoginCommand logCom = new LoginCommand();

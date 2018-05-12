@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Текст статьи</label>
-                <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="20">${article.content}</textarea>
+                <textarea class="form-control tinymce" name="content" id="exampleFormControlTextarea1" rows="20">${article.content}</textarea>
             </div>
             <div class="row m-0 mt-2">
                 <button type="submit" class="btn btn-primary ml-auto">Изменить</button>

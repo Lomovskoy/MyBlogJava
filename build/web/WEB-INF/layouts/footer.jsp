@@ -13,6 +13,11 @@
         <script src="template/js/jquery.min.js"></script>
         <script src="template/js/popper.min.js"></script>
         <script src="template/js/bootstrap.min.js"></script>
+        
+        <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+        <script>tinymce.init({ selector:'textarea.tinymce' });</script>
+        
         <script src="template/js/main.js"></script>
+        
     </body>
 </html>

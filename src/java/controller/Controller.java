@@ -4,11 +4,13 @@ import command.ActionCommand;
 import factory.ActionFactory;
 import java.io.IOException;
 import java.util.ResourceBundle;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import session.ArticleFacade;
 
 /**
  *
@@ -21,20 +23,19 @@ public class Controller extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
+
         ActionFactory factory = new ActionFactory();
         ActionCommand actionCommand = factory.defiCommand(request);
         String page = actionCommand.execute(request);
-        
-        if (page != null){
-           request.getRequestDispatcher(page).forward(request, response);
-           //response.sendRedirect(page);
-        }
-        else{
-            request.setAttribute("error","Error! Обращение к несуществующей странице");
+
+        if (page != null) {
+            request.getRequestDispatcher(page).forward(request, response);
+            //response.sendRedirect(page);
+        } else {
+            request.setAttribute("error", "Error! Обращение к несуществующей странице");
             ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
             page = resourceBundle.getString("page.error");
-            response.sendRedirect(request.getContextPath()+page);
+            response.sendRedirect(request.getContextPath() + page);
         }
     }
 

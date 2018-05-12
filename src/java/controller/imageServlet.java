@@ -19,7 +19,7 @@ import resours.FileDirectoriesManager;
  * @author lomov
  */
 @WebServlet(name = "imageServlet", urlPatterns = {"/imageServlet/*"})
-public class imageServlet extends HttpServlet {
+public class ImageServlet extends HttpServlet {
  // Constants ----------------------------------------------------------------------------------
 
     private static final int DEFAULT_BUFFER_SIZE = 10240; // 10KB.

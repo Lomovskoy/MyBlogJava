@@ -21,7 +21,13 @@
                     <hr class="mt-1">
                     <div class="row">
                         <!--<span class="fa fa-heart ml-3 mt-1 text-primary border border-primary rounded p-1"> 0</span>-->
-                        <button type="button" class="btn btn-outline-primary btn-sm fa fa-heart-o like-button" article="${article.id}" postavlen="${article.LikedByUser(user) ? "1" : "0"}" count="${article.LikesCount()}"></button>
+                        <button type="button" 
+                                id="like" 
+                                class="btn btn-outline-primary btn-sm fa fa-heart-o like-button" 
+                                article="${article.id}" 
+                                postavlen="${article.LikedByUser(user) ? "1" : "0"}" 
+                                count="${article.LikesCount()}">
+                        </button>
                         <span class="card-link text-success ml-3" style="border: #0069d9">
                             Дата публикации: ${dateFormat.format(article.publicdate)}
                         </span>

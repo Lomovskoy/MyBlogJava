@@ -17,6 +17,13 @@
             <a class="card-title h4 text-info" href="?page=showOneArticle&id=${article.id}" >${article.caption}</a>
             <div class="card-text tab-article-text onepost" >${article.content}</div>
             <div class="row">
+                <button type="button" 
+                        id="like" 
+                        class="btn btn-outline-primary btn-sm fa fa-heart-o like-button" 
+                        article="${article.id}" 
+                        postavlen="${article.LikedByUser(user) ? "1" : "0"}" 
+                        count="${article.LikesCount()}">
+                </button>
                 <span class="card-link text-success ml-3">
                     Дата публикации: <%--${dateFormat.format(article.publicdate)}--%>
                     <fmt:formatDate value="${article.publicdate}" pattern="dd.MM.yyyy HH:mm:ss"/>
@@ -32,19 +39,19 @@
         <small class="text-danger ml-auto">Что бы оставить комментарий, зарегистрируйтесь.</small>
     </c:if>
     <c:if test="${not empty user}">
-    <div class="ml-auto col-9">
-        <form class="mb-2" action="?page=addcomment&articleid=${article.id}" method="POST">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Комментарий</label>
-                <textarea type="text" class="form-control" name="comment">${changeComments.toString()}</textarea>
-                <small class="form-text text-muted">Здесь вы можете оставить свой комментарий</small>
-                <small class="form-text text-info">${info}</small>
-            </div>
-            <div class="row ">
-                <button class="btn btn-primary ml-auto mr-3">Отправить</button>
-            </div>
-        </form>
-    </div>
+        <div class="ml-auto col-9">
+            <form class="mb-2" action="?page=addcomment&articleid=${article.id}" method="POST">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Комментарий</label>
+                    <textarea type="text" class="form-control" name="comment">${changeComments.toString()}</textarea>
+                    <small class="form-text text-muted">Здесь вы можете оставить свой комментарий</small>
+                    <small class="form-text text-info">${info}</small>
+                </div>
+                <div class="row ">
+                    <button class="btn btn-primary ml-auto mr-3">Отправить</button>
+                </div>
+            </form>
+        </div>
     </c:if>
     <div>
         <c:forEach var="comment" items="${comments}">

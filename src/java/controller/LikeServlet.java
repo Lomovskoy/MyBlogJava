@@ -43,6 +43,7 @@ public class LikeServlet extends HttpServlet {
         Article article = articleFasade.find(artId);
         
         if(article == null) return;
+        if(user == null) return;
         
         if(stavitLike && !article.LikedByUser(user)){
             article.LikeAdd(user);

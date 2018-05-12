@@ -11,10 +11,14 @@ $(document).ready(function () {
                         //alert("Like OK");
                         $(this).removeClass('fa-heart-o');
                         $(this).addClass('fa-heart');
-                    } else {
+                    } else if(postavlen == "0"){
                         //alert("Like NOT OK");
                         $(this).removeClass('fa-heart');
                         $(this).addClass('fa-heart-o');
+                    } else{
+                        //$(this).addTitle = 'after click';
+                        //title="Зарегистрируйтесь, что бы поставить лайк"
+                        document.getElementById('like').setAttribute('title', 'Зарегестрируйтесь');
                     }
                 });
     }

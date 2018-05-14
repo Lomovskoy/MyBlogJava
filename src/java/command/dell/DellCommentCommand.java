@@ -16,14 +16,18 @@ import session.ArticleFacade;
 import session.CommentFacade;
 
 /**
- *
- * @author pupil
+ * Клас отвечающий за удаления комментария
+ * @author Lomovskoy
  */
 public class DellCommentCommand implements ActionCommand{
 
     private ArticleFacade articleFacade;
     private CommentFacade commentFacade;
     
+    /**
+     * Конструктор реализующий подключение нужного бина
+     * в контекте этого класса.
+     */
     public DellCommentCommand() {
         Context context;
         try{
@@ -35,6 +39,11 @@ public class DellCommentCommand implements ActionCommand{
         }
     }
     
+    /**
+     * Метод удаления комментария
+     * @param request
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
         

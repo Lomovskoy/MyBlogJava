@@ -9,12 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import resours.FileDirectoriesManager;
 
 /**
- *
- * @author pupil
  * Класс перехода на страницу добавления статьи
+ * @author Lomovskoy
  */
 public class AddFormCommand implements ActionCommand{
     
+    /**
+     * Метод перехода на страницу добавления статьи
+     * @param request
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {  
         

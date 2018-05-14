@@ -16,14 +16,18 @@ import session.RoleFacade;
 import session.UserFacade;
 
 /**
- *
- * @author pupil
+ * Класс отвечающий за регистрацию пользователя
+ * @author Lomovskoy
  */
 public class RegistrationCommand implements ActionCommand {
 
     private UserFacade userFasade;
     private RoleFacade roleFasade;
 
+    /**
+     * Конструктор реализующий подключение нужного бина
+     * в контекте этого класса.
+     */
     public RegistrationCommand() {
         Context context;
         try {
@@ -35,6 +39,11 @@ public class RegistrationCommand implements ActionCommand {
         }
     }
 
+    /**
+     * Метод отвечающий за регистрациюб пользователя
+     * @param request
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
 

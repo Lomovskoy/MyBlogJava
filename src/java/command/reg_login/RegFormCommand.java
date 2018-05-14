@@ -5,11 +5,16 @@ import java.util.ResourceBundle;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- *
- * @author pupil
+ * Класс отвечающий за перенаправление на форму регистрации
+ * @author Lomovskoy
  */
 public class RegFormCommand implements ActionCommand{
 
+    /**
+     * Метод отвечающий за перенаправление на форму регистрации
+     * @param request
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
         

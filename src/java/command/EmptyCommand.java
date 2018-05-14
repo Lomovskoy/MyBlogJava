@@ -2,7 +2,6 @@ package command;
 
 import entity.Article;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -14,13 +13,17 @@ import javax.servlet.http.HttpServletRequest;
 import session.ArticleFacade;
 
 /**
- *
- * @author pupil Класс пустой команды
+ * Класс отвечающи за открытие индексной страницы.
+ * @author Lomovskoy
  */
 public class EmptyCommand implements ActionCommand {
 
     private ArticleFacade articleFasade;
 
+    /**
+     * Конструктор реализующий подключение нужного бина
+     * в контекте этого класса.
+     */
     public EmptyCommand() {
         Context context;
         try {
@@ -32,20 +35,15 @@ public class EmptyCommand implements ActionCommand {
     }
 
     /**
-     *
-     * @param request
-     * @return Метод возвращающий индексную страницу если нет заданных
+     * Метод возвращающий индексную страницу если нет заданных
      * переметров сслки
+     * @param request
+     * @return String
      */
     @Override
     public String execute(HttpServletRequest request) {
 
         try {
-            /*List<Article> articles = articleFasade.findAll();
-            Collections.reverse(articles);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-            request.setAttribute("dateFormat", dateFormat);
-            request.setAttribute("articles", articles);*/
 
             Integer articlesOnPage = 10;
             Integer pageCurrent = 1;

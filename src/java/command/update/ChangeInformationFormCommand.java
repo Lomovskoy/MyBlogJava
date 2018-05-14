@@ -6,11 +6,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author imxo
+ * Класс отвечающий за переход на форму изменения информации
+ * @author Lomovskoy
  */
 public class ChangeInformationFormCommand implements ActionCommand {
     
+    /**
+     * Метод перехода на форму изменения информации
+     * @param request
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
 

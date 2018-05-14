@@ -19,7 +19,7 @@
             <div class="row">
                 <button type="button" 
                         id="like" 
-                        class="btn btn-outline-primary btn-sm fa fa-heart-o like-button" 
+                        class="btn btn-outline-primary btn-sm fa fa-heart-o like-button ml-3" 
                         article="${article.id}" 
                         postavlen="${article.LikedByUser(user) ? "1" : "0"}" 
                         count="${article.LikesCount()}">

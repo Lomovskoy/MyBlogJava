@@ -16,14 +16,18 @@ import session.RoleFacade;
 import session.UserFacade;
 
 /**
- *
- * @author imxo
+ * Класс отвечающий за изменение информации о пользователя
+ * @author Lomovskoy
  */
 public class ChangeInformationCommand implements ActionCommand {
 
     private UserFacade userFasade;
     private RoleFacade roleFasade;
 
+    /**
+     * Конструктор реализующий подключение нужного бина
+     * в контекте этого класса.
+     */
     public ChangeInformationCommand() {
         Context context;
         try {
@@ -35,6 +39,11 @@ public class ChangeInformationCommand implements ActionCommand {
         }
     }
 
+    /**
+     * Метот отвечающий за изменение информации о пользователя
+     * @param request
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
         HttpSession session = request.getSession(false);

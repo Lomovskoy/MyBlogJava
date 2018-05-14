@@ -20,14 +20,18 @@ import session.UserFacade;
 import session.ArticleFacade;
 
 /**
- *
- * @author pupil Класс проверяющий вход в кабинет администратора
+ * Класс проверяющий вход в кабинет администратора
+ * @author Lomovskoy
  */
 public class LoginCommand implements ActionCommand {
 
     private UserFacade userFasade;
     private ArticleFacade articleFasade;
 
+    /**
+     * Конструктор реализующий подключение нужного бина
+     * в контекте этого класса.
+     */
     public LoginCommand() {
         Context context;
         try {
@@ -39,6 +43,11 @@ public class LoginCommand implements ActionCommand {
         }
     }
 
+    /**
+     * Метод входа в кабенет пользователя
+     * @param request
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
 
@@ -82,7 +91,6 @@ public class LoginCommand implements ActionCommand {
                 request.setAttribute("info", "Логин или пароль неверны");
             }
         } else {
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             if (session.getAttribute("admin").equals(true)) {
                 page = resourceBundle.getString("page.adminpage");
             } else {

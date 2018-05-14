@@ -16,7 +16,7 @@ import session.ArticleFacade;
 import session.CommentFacade;
 
 /**
- *
+ * 
  * @author pupil
  */
 public class UpdateCommentCommand implements ActionCommand{

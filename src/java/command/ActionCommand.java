@@ -1,15 +1,16 @@
 package command;
-/**
- * Класс позволяющий передавать request обычным классам
- */
+
 import javax.servlet.http.HttpServletRequest;
+
 /**
- * 
- * @author pupil
- * Метод возвращающий request 
- * execute Выполняет заданную инструкцию, которая 
- * может вернуть несколько результатов
+ * Интерфейс позволяющий реализовать request обычным классам
+ * @author Lomovskoy
  */
 public interface ActionCommand {
+
+    /**
+     * Метод возвращающий request execute Выполняет заданную инструкцию, 
+     * которая может вернуть несколько результатов
+     */
     String execute(HttpServletRequest request);
 }

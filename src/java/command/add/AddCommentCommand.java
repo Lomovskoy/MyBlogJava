@@ -1,4 +1,3 @@
-
 package command.add;
 
 import command.ActionCommand;
@@ -16,28 +15,34 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import session.ArticleFacade;
-import session.CommentFacade;
 
 /**
- *
- * @author pupil
+ * Класс отвечающий за добавление комментария от пользователя
+ * @author Lomovskoy
  */
 public class AddCommentCommand implements ActionCommand{
     
     private ArticleFacade articleFasade;
-    private CommentFacade commentFacade;
     
+    /**
+     * Конструктор реализующий подключение нужного бина
+     * в контекте этого класса.
+     */
     public AddCommentCommand() {
         Context context;
         try{
             context = new InitialContext();
             this.articleFasade = (ArticleFacade) context.lookup("java:module/ArticleFacade");
-            this.commentFacade = (CommentFacade) context.lookup("java:module/CommentFacade");
         }catch(NamingException ex){
             Logger.getLogger(ArticleFacade.class.getName()).log(Level.SEVERE,"Не удалось сессионный бин ",ex);
         }
     }
     
+    /**
+     * Метод отвечающий за добавление комментария от пользователя
+     * @param request
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
         
@@ -56,8 +61,8 @@ public class AddCommentCommand implements ActionCommand{
             article.getComments().add(comment);
             articleFasade.edit(article);
             request.setAttribute("redirect", "?page=showOneArticle&id="+article.getId());
-        }
-        else{
+            
+        }else{
             Article article = articleFasade.find(articleId);
             request.setAttribute("article", article);
             request.setAttribute("info", "Строка комментария должна быть не пустой <br>или его длинна должна быть меньше 2000 символов");

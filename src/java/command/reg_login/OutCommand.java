@@ -6,24 +6,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author pupil Класс выхода из сессии
+ * Класс выхода из сессии
+ * @author Lomovskoy 
  */
 public class OutCommand implements ActionCommand {
 
+    /**
+     * Метод выхода из сессии
+     * @param request
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
 
         HttpSession session = request.getSession(false);
-
         session.setAttribute("user", null);
-
         return new EmptyCommand().execute(request);
-        /*
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
-        String page = resourceBundle.getString("page.index");
-        return page;
-         */
     }
 
 }

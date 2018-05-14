@@ -23,15 +23,14 @@ import command.update.UpdateCommentFormCommand;
 import command.update.UpdateFormArticleCommand;
 
 /**
- * 
- * @author pupil
- * enum класс предназначенный для перечисления,
- * содержит поля класса как массив из ключ - значение
+ * Класс предназначенный для перечисления,
+ * содержит поля класса как массив ключ - значение
  * и метод возвращающий значение по ключу
+ * @author Lomovskoy
  */
 public enum CommandEnum {
     
-    //Массив с ключами и згачениями
+    //Массив с ключами и значениями
     PRODUCT{{this.command = new EmptyCommand();}},
     INDEX{{this.command = new EmptyCommand();}},
     ADMINPANEL{{this.command = new AdminCommand();}},
@@ -56,13 +55,14 @@ public enum CommandEnum {
     DELLIMAGE{{this.command = new DellImageCommand();}},
     CHANGEINFORMATIONFORM{{this.command = new ChangeInformationFormCommand();}},
     CHANGEINFORMATION{{this.command = new ChangeInformationCommand();}},
-    VIEWARTICLES{{this.command = new ShowArticlesCommand();}};
+    VIEWARTICLES{{this.command = new ShowArticlesCommand();}},
+    SEARCH{{this.command = new SearchCommand();}};
     ActionCommand command;
     
     /**
-     * @return 
      * Возврашает класс назденный по значению,
-     * знавчение берётся из ссылки значения command=ключ
+     * знавчение берётся из ссылки значения command = ключ
+     * @return Object
      */
     public ActionCommand getCurrentCommand(){
         

@@ -15,13 +15,17 @@ import javax.servlet.http.HttpSession;
 import session.ArticleFacade;
 
 /**
- *
- * @author pupil
+ * Класс отвечающий за изменение статьи
+ * @author Lomovskoy
  */
 public class UpdateArticleCommand implements ActionCommand{
 
     private ArticleFacade articleFasade;
     
+    /**
+     * Конструктор реализующий подключение нужного бина
+     * в контекте этого класса.
+     */
     public UpdateArticleCommand() {
         Context context;
         try{
@@ -32,6 +36,11 @@ public class UpdateArticleCommand implements ActionCommand{
         }
     }
     
+    /**
+     * Метод отвечающий за изменение статьи
+     * @param request
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
         

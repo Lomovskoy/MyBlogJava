@@ -42,6 +42,7 @@
                                 <a class="nav-link" href='?page=index'>My Java Blog Lomovskoy</a>
                             </li>
                         </ul>
+
                         <c:if test="${empty user}">
                             <a class="btn btn-outline-light my-2 my-sm-0" href="?page=regform">Регистрация</a>
                             <a class="btn btn-outline-light my-2 my-sm-0 ml-1" href="?page=adminPanel">Вход</a>
@@ -70,3 +71,21 @@
                 </nav>
             </div>
         </header>
+        <div class="container">
+            <div class="row m-0 mt-1">
+                <c:if test="${resultSearch != null}">
+
+                        Найденно результатов: ${resultSearch}
+
+                </c:if> 
+                <c:if test="${resultSearch == null}">
+
+                        ...
+
+                </c:if> 
+                    <form class="form-inline my-2 my-sm-0 input-group-sm ml-auto" action="?page=search" method="POST">
+                        <input class="form-control mr-sm-2 ml-auto" type="search" name="search" placeholder="Поиск" aria-label="Search">
+                        <button class="btn btn-primary my-2 my-sm-0 btn-sm ml-auto" type="submit">Искать</button>
+                    </form>
+            </div>
+        </div>

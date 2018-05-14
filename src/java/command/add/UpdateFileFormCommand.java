@@ -1,4 +1,3 @@
-
 package command.add;
 
 import command.ActionCommand;
@@ -10,11 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import resours.FileDirectoriesManager;
 
 /**
- *
- * @author pupil
+ * Класс перехода на страницу добавления изображения
+ * @author Lomovskoy
  */
 public class UpdateFileFormCommand implements ActionCommand{
     
+    /**
+     * Метод перехода на страницу добавления изображения
+     * @param request
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
         String path = request.getServletContext().getRealPath("")+File.separator
@@ -23,17 +27,9 @@ public class UpdateFileFormCommand implements ActionCommand{
         
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
-        
         Arrays.sort(listOfFiles,Collections.reverseOrder());
-        /*for (File file : listOfFiles) {
-            if (file.isFile()) {
-                System.out.println(file.getName());
-            }
-        }*/
-        
         request.setAttribute("images", listOfFiles);
 
-        
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
         String page = resourceBundle.getString("page.updatefileform");
         return page;

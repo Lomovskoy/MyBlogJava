@@ -10,7 +10,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@include file = "layouts/header.jsp" %>
-
+ 
 <c:forEach var="article" items="${articles}">
     <c:if test="${article.getActive() == true}">
         <div class="container">
@@ -43,11 +43,13 @@
 <div class="container">
     <nav class="mt-3 mx-auto">
         <ul class="pagination">
-            <li class="page-item<c:if test="${curpage - 1 < 1}"> disabled</c:if>"><a class="page-link" href="?page=index&pagination=${curpage - 1}"><<</a></li>
-                <c:forEach var="page" items="${pages}">
+            <c:if test="${pages != null}">
+                <li class="page-item<c:if test="${curpage - 1 < 1}"> disabled</c:if>"><a class="page-link" href="?page=index&pagination=${curpage - 1}"><<</a></li>
+                    <c:forEach var="page" items="${pages}">
                     <li class="page-item<c:if test="${page == curpage}"> active</c:if>"><a class="page-link" href="?page=index&pagination=${page}">${page}</a></li>
-                </c:forEach>
-            <li class="page-item<c:if test="${curpage == pagecount}"> disabled</c:if>"><a class="page-link" href="?page=index&pagination=${curpage+1}">>></a></li>
+                    </c:forEach>
+                <li class="page-item<c:if test="${curpage == pagecount}"> disabled</c:if>"><a class="page-link" href="?page=index&pagination=${curpage+1}">>></a></li>
+            </c:if>
         </ul>
     </nav>
 </div>

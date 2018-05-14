@@ -13,14 +13,17 @@ import javax.servlet.http.HttpServletRequest;
 import session.ArticleFacade;
 
 /**
- *
- * @author pupil
+ * Класс отвечающий за отображение одной статьи
+ * @author Lomovskoy
  */
 public class ShowOneArticleCommand implements ActionCommand {
 
     private ArticleFacade articleFasade;
-    //private CommentFacade commentFacade;
 
+    /**
+     * Конструктор реализующий подключение нужного бина
+     * в контекте этого класса.
+     */
     public ShowOneArticleCommand() {
         Context context;
         try {
@@ -31,6 +34,11 @@ public class ShowOneArticleCommand implements ActionCommand {
         }
     }
 
+    /**
+     * Метод отвечающий за отображение одной статьи
+     * @param request
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
 

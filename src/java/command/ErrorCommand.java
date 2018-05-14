@@ -1,19 +1,18 @@
-
 package command;
 
 import java.util.ResourceBundle;
 import javax.servlet.http.HttpServletRequest;
+
 /**
- * 
- * @author pupil
  * Класс перенаправления настраницу ошибки
+ * @author Lomovskoy
  */
 public class ErrorCommand implements ActionCommand{
+    
     /**
-     * 
+     * Метод направляющий на страницу ошибки
      * @param request
-     * @return 
-     * Переназначенный метод родителя, направляющий на страницу ошибки
+     * @return String
      */
     @Override
     public String execute(HttpServletRequest request) {

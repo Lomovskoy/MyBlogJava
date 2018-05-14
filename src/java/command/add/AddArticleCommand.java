@@ -18,13 +18,17 @@ import javax.servlet.http.HttpSession;
 import session.ArticleFacade;
 
 /**
- *
- * @author pupil
+ * Класс отвечающий за добавлений новой статьи
+ * @author Lomovskoy
  */
 public class AddArticleCommand implements ActionCommand{
 
     private ArticleFacade articleFasade;
     
+    /**
+     * Конструктор реализующий подключение нужного бина
+     * в контекте этого класса.
+     */
     public AddArticleCommand() {
         Context context;
         try{
@@ -35,6 +39,11 @@ public class AddArticleCommand implements ActionCommand{
         }
     }
     
+    /**
+     * Метод отвечающий за добавлений новой статьи
+     * @param request
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
         
@@ -49,7 +58,7 @@ public class AddArticleCommand implements ActionCommand{
             active = false;
         }
         
-        Calendar date = new GregorianCalendar(); //date.getTime()
+        Calendar date = new GregorianCalendar();
         Article article = new Article(caption, content, date.getTime(), user, active, new ArrayList<>(), new ArrayList<>());
         articleFasade.create(article);
         

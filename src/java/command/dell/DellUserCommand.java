@@ -14,29 +14,35 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import session.RoleFacade;
 import session.UserFacade;
 
 /**
- *
- * @author pupil
+ * Класс отвечающий за удаление пользователя
+ * @author Lomovskoy
  */
 public class DellUserCommand implements ActionCommand{
     
     private UserFacade userFasade;
-    private RoleFacade roleFasade;
     
+    /**
+     * Конструктор реализующий подключение нужного бина
+     * в контекте этого класса.
+     */
     public DellUserCommand() {
         Context context;
         try{
             context = new InitialContext();
             this.userFasade = (UserFacade) context.lookup("java:module/UserFacade");
-            this.roleFasade = (RoleFacade) context.lookup("java:module/RoleFacade");
         }catch(NamingException ex){
             Logger.getLogger(AdminCommand.class.getName()).log(Level.SEVERE,"Не удалось сессионный бин ",ex);
         }
     }
 
+    /**
+     * Метод удаления пользователя
+     * @param request
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
         

@@ -1,9 +1,7 @@
 package command;
 
-import command.admin.AdminCommand;
 import entity.Article;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -12,14 +10,13 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import session.ArticleFacade;
 
 /**
- * Класс отвечающий за отображение всех статей
+ * Класс отвечающий за поиск статей
  * @author Lomovskoy
  */
-public class ShowArticlesCommand implements ActionCommand {
+public class SearchCommand implements ActionCommand {
 
     private ArticleFacade articleFasade;
 
@@ -27,41 +24,45 @@ public class ShowArticlesCommand implements ActionCommand {
      * Конструктор реализующий подключение нужного бина
      * в контекте этого класса.
      */
-    public ShowArticlesCommand() {
+    public SearchCommand() {
         Context context;
         try {
             context = new InitialContext();
             this.articleFasade = (ArticleFacade) context.lookup("java:module/ArticleFacade");
         } catch (NamingException ex) {
-            Logger.getLogger(AdminCommand.class.getName()).log(Level.SEVERE, "Не удалось сессионный бин ", ex);
+            Logger.getLogger(ArticleFacade.class.getName()).log(Level.SEVERE, "Не удалось сессионный бин ", ex);
         }
     }
 
     /**
-     * Метод отвечающий за отображение всех статей
+     * Метод осуществляющий поиск по статьям
      * @param request
      * @return String
      */
     @Override
     public String execute(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
-        String page = resourceBundle.getString("page.shouarticles");
-        if (session.getAttribute("admin").equals(true)) {
-            try {
-                List<Article> articles = articleFasade.findAll();
-                Collections.reverse(articles);
-                request.setAttribute("articles", articles);
 
+        try {
+
+            String search = request.getParameter("search");
+            search = search.trim();
+            if (!search.equals("")) {
+
+                List<Article> articles = articleFasade.searchPagination(search);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
                 request.setAttribute("dateFormat", dateFormat);
                 request.setAttribute("articles", articles);
-            } catch (Exception e) {
-                request.setAttribute("info", "Статей нет.");
+                request.setAttribute("resultSearch", articles.size());
             }
-        } else {
-            page = resourceBundle.getString("page.index");
+
+        } catch (Exception e) {
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
+            String page = resourceBundle.getString("page.index");
+            return page;
         }
+
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
+        String page = resourceBundle.getString("page.index");
         return page;
     }
 

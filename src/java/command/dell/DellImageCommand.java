@@ -1,4 +1,3 @@
-
 package command.dell;
 
 import command.ActionCommand;
@@ -8,11 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 import resours.FileDirectoriesManager;
 
 /**
- *
- * @author imxo
+ * Класс отвечающий за удаление изображения
+ * @author Lomovskoy
  */
 public class DellImageCommand implements ActionCommand{
 
+    /**
+     * Метод удаления изображения
+     * @param request
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
         
@@ -30,16 +34,8 @@ public class DellImageCommand implements ActionCommand{
         
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
-
-        /*for (File file : listOfFiles) {
-            if (file.isFile()) {
-                System.out.println(file.getName());
-            }
-        }*/
-        
         request.setAttribute("images", listOfFiles);
 
-        
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");
         String page = resourceBundle.getString("page.updatefileform");
         return page;

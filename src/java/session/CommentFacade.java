@@ -8,8 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
- * @author pupil
+ * Фасад для работы с комментариями
+ * @author Lomovskoy
  */
 @Stateless
 public class CommentFacade extends AbstractFacade<Comment> {
@@ -17,6 +17,10 @@ public class CommentFacade extends AbstractFacade<Comment> {
     @PersistenceContext(unitName = "MyBlogLomovskoyPU")
     private EntityManager em;
 
+    /**
+     * Создание менеджера для работы с б.д.
+     * @return EntityManager
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
@@ -24,18 +28,6 @@ public class CommentFacade extends AbstractFacade<Comment> {
 
     public CommentFacade() {
         super(Comment.class);
-    }
-
-    public List<Comment> findById(Article articleId) {
-        try{
-            List<Comment> comments = (List<Comment>) em.createQuery("SELECT u FROM Comment u WHERE u.article=:article")
-                    .setParameter("article", articleId)
-                    .getResultList();
-            return comments;
-
-        }catch(Exception e){
-            return null;
-        }
     }
     
 }

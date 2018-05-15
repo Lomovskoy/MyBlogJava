@@ -18,8 +18,7 @@
             <div class="card-text tab-article-text onepost" >${article.content}</div>
             <div class="row">
                 <button type="button" 
-                        id="like" 
-                        class="btn btn-outline-primary btn-sm fa fa-heart-o like-button ml-3" 
+                        class="btn btn-outline-primary btn-sm fa fa-heart-o like-button-art ml-3" 
                         article="${article.id}" 
                         postavlen="${article.LikedByUser(user) ? "1" : "0"}" 
                         count="${article.LikesCount()}">
@@ -74,6 +73,11 @@
                     </c:if>
                     ${comment.comment}
                     <div class="row">
+                        <div class="fa fa-heart-o like-button-com mt-1"
+                            article="${comment.id}" 
+                            postavlen="${comment.LikedByUser(user) ? "1" : "0"}" 
+                            count="${comment.LikesCount()}">
+                        </div>
                         <span class="card-link text-success ml-3">
                             Дата публикации: ${dateFormat.format(comment.publicdate)}
                         </span>

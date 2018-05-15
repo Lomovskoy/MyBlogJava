@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
+ * Фасад отвечающий за работу с пользователями
  * @author lomov
  */
 @Stateless
@@ -16,6 +16,10 @@ public class UserFacade extends AbstractFacade<User> {
     @PersistenceContext(unitName = "MyBlogLomovskoyPU")
     private EntityManager em;
 
+    /**
+     * Создание менеджера для работы с б.д.
+     * @return EntityManager
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
@@ -25,6 +29,11 @@ public class UserFacade extends AbstractFacade<User> {
         super(User.class);
     }
     
+    /**
+     * Получить пользователя по логнину
+     * @param login
+     * @return User
+     */
     public User findByLogin(String login){
 
         try{
@@ -37,7 +46,13 @@ public class UserFacade extends AbstractFacade<User> {
             return null;
         }
     }
-     public User findByEmail(String email){
+    
+    /**
+     * Получить пользователя по почте
+     * @param email
+     * @return User
+     */
+    public User findByEmail(String email){
 
         try{
             User user = (User) em.createQuery("SELECT u FROM User u WHERE u.email=:email")
@@ -48,10 +63,6 @@ public class UserFacade extends AbstractFacade<User> {
         }catch(Exception e){
             return null;
         }
-    }
-
-    public void create(Role role1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

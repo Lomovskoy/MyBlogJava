@@ -17,13 +17,12 @@
             <div class="card mt-4" >
                 <div class="card-body">
                     <a class="card-title h4 text-info" href="?page=showOneArticle&id=${article.id}" >${article.caption}</a>
-                    <div class="card-text tab-article-text index" >${fn:substring(article.content,0,250)} ...</div>
+                    <div class="card-text tab-article-text index" >${fn:substring(article.content,0,350)} ...</div>
                     <hr class="mt-1">
                     <div class="row">
-                        <!--<span class="fa fa-heart ml-3 mt-1 text-primary border border-primary rounded p-1"> 0</span>-->
                         <button type="button" 
                                 id="like" 
-                                class="btn btn-outline-primary btn-sm fa fa-heart-o like-button" 
+                                class="btn btn-outline-primary btn-sm fa fa-heart-o like-button-art" 
                                 article="${article.id}" 
                                 postavlen="${article.LikedByUser(user) ? "1" : "0"}" 
                                 count="${article.LikesCount()}">

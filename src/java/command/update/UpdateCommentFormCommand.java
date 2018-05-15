@@ -15,13 +15,17 @@ import session.ArticleFacade;
 import session.CommentFacade;
 
 /**
- *
- * @author imxo
+ * Класс отвечающий за перехож на форму изменения комментария
+ * @author Lomovskoy
  */
 public class UpdateCommentFormCommand implements ActionCommand {
 
     private CommentFacade commentFacade;
 
+    /**
+     * Конструктор реализующий подключение нужного бина
+     * в контекте этого класса.
+     */
     public UpdateCommentFormCommand() {
         Context context;
         try {
@@ -32,6 +36,11 @@ public class UpdateCommentFormCommand implements ActionCommand {
         }
     }
 
+    /**
+     * Метод перехода на форму изменения комментария
+     * @param request
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
 

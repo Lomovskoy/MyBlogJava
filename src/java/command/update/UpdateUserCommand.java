@@ -17,14 +17,18 @@ import session.RoleFacade;
 import session.UserFacade;
 
 /**
- *
- * @author pupil
+ * Класс отвечающий за изменения пользователей
+ * @author Lomovskoy
  */
 public class UpdateUserCommand implements ActionCommand{
     
     private UserFacade userFasade;
     private RoleFacade roleFacade;
     
+    /**
+     * Конструктор реализующий подключение нужного бина
+     * в контекте этого класса.
+     */
     public UpdateUserCommand() {
         Context context;
         try{
@@ -36,6 +40,11 @@ public class UpdateUserCommand implements ActionCommand{
         }
     }
 
+    /**
+     * Метод изменения, управления пользователями
+     * @param request
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
         
@@ -54,7 +63,6 @@ public class UpdateUserCommand implements ActionCommand{
             String active = (String) request.getParameter("active");
             String roleStr = (String) request.getParameter("role");
             
-            //boolean activebool = Boolean.parseBoolean(active);
             if(active != null && roleStr != null && active != "" && roleStr != ""){
                 
                 Role role = roleFacade.find(Long.parseLong(roleStr));

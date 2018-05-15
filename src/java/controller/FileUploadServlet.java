@@ -20,8 +20,8 @@ import javax.servlet.http.Part;
 import resours.FileDirectoriesManager;
 
 /**
- *
- * @author imxo
+ * Сервлет отвечающи за закгрузки кизображений для статей
+ * @author Lomovskoy
  */
 @WebServlet(name = "FileUploadController", urlPatterns = {"/upload"})
 @MultipartConfig
@@ -31,13 +31,12 @@ public class FileUploadServlet extends HttpServlet {
             = Logger.getLogger(FileUploadServlet.class.getCanonicalName());
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
+     * Обрабатывает запросы для HTTP <code> GET </ code> и <code> POST </ code>
+     * методы.
      * @param request servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws ServletException если возникает ошибка, зависящая от сервлета
+     * @throws IOException если возникает ошибка ввода-вывода
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -78,17 +77,19 @@ public class FileUploadServlet extends HttpServlet {
                 if (filecontent != null) {
                     filecontent.close();
                 }
-
             }
 
             UpdateFileFormCommand ufc = new UpdateFileFormCommand();
-            //!!!!
             ufc.execute(request);
         }
-        //request.getRequestDispatcher("/WEB-INF/admin/admin_upload_file.jsp").forward(request, response);
         response.sendRedirect("?page=addfile");
     }
 
+    /**
+     * Метод получения имени файла
+     * @param part
+     * @return String
+     */
     private String getFileName(final Part part) {
         final String partHeader = part.getHeader("content-disposition");
         LOGGER.log(Level.INFO, "Part Header = {0}", partHeader);
@@ -101,15 +102,17 @@ public class FileUploadServlet extends HttpServlet {
         return null;
     }
 
+    /**
+     * Метод получения нового имени вайла
+     * @param request
+     * @param oldFileName
+     * @return String
+     */
     private String getNewFileName(HttpServletRequest request, String oldFileName) {
         String[] splitByTochka = oldFileName.split(Pattern.quote("."));
-        System.out.println(oldFileName);
-        System.out.println(splitByTochka.length);
         String fileType = splitByTochka[splitByTochka.length - 1];
         
         if ("jpg".equals(fileType)) {
-            //String filename = Cryptography.getSalts();
-            //return oldFileName + "." + fileType;
             String path = request.getServletContext().getRealPath("")+File.separator
                 +FileDirectoriesManager.getProperty("dir")+File.separator
                     +FileDirectoriesManager.getProperty("files");

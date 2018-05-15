@@ -17,11 +17,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ * Сущьность статьи
+ * @author Lomovskoy
+ */
 @Entity
 @Table(name = "article")
 public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +35,7 @@ public class Article implements Serializable {
     @Column(length = 255, name = "caption")
     private String caption;
 
-    @Column(columnDefinition = "TEXT", name = "content")//21845
+    @Column(columnDefinition = "TEXT", name = "content")
     private String content;
 
     @Column(name = "publicdate")
@@ -44,6 +49,8 @@ public class Article implements Serializable {
     @Column(name = "active")
     private Boolean active;
 
+    //@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    //@JoinColumn(name = "ARTICLE_ID")
     @OneToMany(cascade = CascadeType.ALL)
     private List<Comment> comments;
     
@@ -53,7 +60,8 @@ public class Article implements Serializable {
     public Article() {
     }
 
-    public Article(String caption, String content, Date publicdate, User author, Boolean active, List<Comment> comments, List<User> likes) {
+    public Article(String caption, String content, Date publicdate, User author, 
+            Boolean active, List<Comment> comments, List<User> likes) {
         this.caption = caption;
         this.content = content;
         this.publicdate = publicdate;
@@ -185,18 +193,35 @@ public class Article implements Serializable {
         return "Article{" + "id=" + id + ", caption=" + caption + ", content=" + content + ", publicdate=" + publicdate + ", author=" + author + ", active=" + active + ", comments=" + comments + ", likes=" + likes + '}';
     }
 
+    /**
+     * Количество лайков
+     * @return int
+     */
     public int LikesCount() {
         return likes.size();
     }
 
+    /**
+     * Ставил ли лийк этот пользователь
+     * @param user
+     * @return boolean
+     */
     public boolean LikedByUser(User user) {
         return likes.contains(user);
     }
 
+     /**
+      * Добавить лайк
+      * @param user 
+      */
     public void LikeAdd(User user) {
         likes.add(user);
     }
 
+    /**
+     * Удалить лайк
+     * @param user 
+     */
     public void LikeDelete(User user) {
         likes.remove(user);
     }

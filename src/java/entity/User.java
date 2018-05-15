@@ -13,9 +13,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 /**
- * 
- * @author kirill
- * Сущность администратора 
+ * Сущьность пользователь
+ * @author Lomovskoy
  */
 @Entity
 @Table(name = "user")

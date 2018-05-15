@@ -4,21 +4,28 @@ import command.ActionCommand;
 import factory.ActionFactory;
 import java.io.IOException;
 import java.util.ResourceBundle;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import session.ArticleFacade;
 
 /**
- *
- * @author pupil
+ * Сервлет контроллер получающий от фабрики страницу 
+ * определяющий существует ли она и осуществляющий перенаправлениеы
+ * @author Lomovskoy
  */
 @WebServlet(name = "Controller", urlPatterns = {""})
 public class Controller extends HttpServlet {
 
+    /**
+     * Метод перенапрвавления на нужную страницу 
+     * определяемую фабрикой и нужным коммкандом
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -30,7 +37,6 @@ public class Controller extends HttpServlet {
 
         if (page != null) {
             request.getRequestDispatcher(page).forward(request, response);
-            //response.sendRedirect(page);
         } else {
             request.setAttribute("error", "Error! Обращение к несуществующей странице");
             ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");

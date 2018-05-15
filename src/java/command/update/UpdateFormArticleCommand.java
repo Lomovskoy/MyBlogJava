@@ -17,13 +17,17 @@ import resours.FileDirectoriesManager;
 import session.ArticleFacade;
 
 /**
- *
- * @author pupil
+ * Класс отвечающий за переход на форму изменения статьи
+ * @author Lomovskoy
  */
 public class UpdateFormArticleCommand implements ActionCommand{
     
     private ArticleFacade articleFasade;
     
+    /**
+     * Конструктор реализующий подключение нужного бина
+     * в контекте этого класса.
+     */
     public UpdateFormArticleCommand() {
         Context context;
         try{
@@ -34,6 +38,11 @@ public class UpdateFormArticleCommand implements ActionCommand{
         }
     }
     
+    /**
+     * Метод перехода на форму изменения комментария
+     * @param request
+     * @return String
+     */
     @Override
     public String execute(HttpServletRequest request) {
         

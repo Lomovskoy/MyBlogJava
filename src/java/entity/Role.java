@@ -11,8 +11,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 /**
- * роль юзера
- * @author pupil
+ * Сущьность роли
+ * @author Lomovskoy
  */
 @Entity
 @Table(name = "role")

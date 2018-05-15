@@ -15,44 +15,21 @@ import javax.servlet.http.HttpServletResponse;
 import resours.FileDirectoriesManager;
 
 /**
- *
- * @author pupil
+ * Сервлет отвечающий за подгрузку изображений в спредставление
+ * @author Lomovskoy
  */
 @WebServlet(name = "fileServlet", urlPatterns = {"/fileServlet/*"})
 public class FileServlet extends HttpServlet {
 
-    // Constants ----------------------------------------------------------------------------------
-
     private static final int DEFAULT_BUFFER_SIZE = 10240; // 10KB.
-
-    // Properties ---------------------------------------------------------------------------------
-
-    //private String filePath;
-
-    // Actions ------------------------------------------------------------------------------------
-
-    @Override
-    public void init() throws ServletException {
-        //
-        // Define base path somehow. You can define it as init-param of the servlet.
-        //this.filePath = "../../../../my_blog_lomovskoy_image/files/";
-        //this.filePath = "..\\..\\..\\..\\my_blog_lomovskoy_image\\files\\";
-        //this.filePath = "C:\\images";
-        //this.filePath = "D:\\JKTVR-16\\Lomovskoy\\my_blog_lomovskoy_image\\files\\";
-        // In a Windows environment with the Applicationserver running on the
-        // c: volume, the above path is exactly the same as "c:\files".
-        // In UNIX, it is just straightforward "/files".
-        
-    }
     
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
+     * Обрабатывает запросы для HTTP <code> GET </ code> и <code> POST </ code>
+     * методы.
      * @param request servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws ServletException если возникает ошибка, зависящая от сервлета
+     * @throws IOException если возникает ошибка ввода-вывода
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -84,11 +61,9 @@ public class FileServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_NOT_FOUND); // 404.
             return;
         }
-
         
         // Получим тип контента по имени файла
         String contentType = getServletContext().getMimeType(file.getName());
-
         
         //Если тип контента неизвестен, установите значение по умолчанию.
         if (contentType == null) {
@@ -124,14 +99,16 @@ public class FileServlet extends HttpServlet {
         }
 
     }
-    // Helpers (can be refactored to public utility class) ----------------------------------------
-
+    
+    /**
+     * Метод закрытия файла после чтения
+     * @param resource 
+     */
     private static void close(Closeable resource) {
         if (resource != null) {
             try {
                 resource.close();
             } catch (IOException e) {
-                // Do your thing with the exception. Print it, log it or mail it.
                 e.getMessage();
             }
         }

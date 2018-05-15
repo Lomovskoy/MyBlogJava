@@ -15,28 +15,21 @@ import javax.servlet.http.HttpServletResponse;
 import resours.FileDirectoriesManager;
 
 /**
- *
- * @author lomov
+ * Сервлет отвечающий за подгрузку аватарок в спредставление
+ * @author Lomovskoy
  */
 @WebServlet(name = "imageServlet", urlPatterns = {"/imageServlet/*"})
 public class ImageServlet extends HttpServlet {
- // Constants ----------------------------------------------------------------------------------
 
     private static final int DEFAULT_BUFFER_SIZE = 10240; // 10KB.
 
-    // Properties ---------------------------------------------------------------------------------
-
-    //private String filePath;
-
-    // Actions ------------------------------------------------------------------------------------
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
+     * Обрабатывает запросы для HTTP <code> GET </ code> и <code> POST </ code>
+     * методы.
      * @param request servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws ServletException если возникает ошибка, зависящая от сервлета
+     * @throws IOException если возникает ошибка ввода-вывода
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -62,7 +55,7 @@ public class ImageServlet extends HttpServlet {
         // Создадим объект типа File, при этом декодируем имя файла полученного из request
         // т.к оно может содержать пробелы и другие символы
         File file = new File(filePath, URLDecoder.decode(requestedFile, "UTF-8"));
-        // Check if file actually exists in filesystem.
+
         // Проверим, существует ли файл в файловой системе
         if (!file.exists()) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND); // 404.
@@ -108,14 +101,16 @@ public class ImageServlet extends HttpServlet {
         }
 
     }
-    // Helpers (can be refactored to public utility class) ----------------------------------------
-
+    
+    /**
+     * Метод закрытия файла после чтения
+     * @param resource 
+     */
     private static void close(Closeable resource) {
         if (resource != null) {
             try {
                 resource.close();
             } catch (IOException e) {
-                // Do your thing with the exception. Print it, log it or mail it.
                 e.getMessage();
             }
         }

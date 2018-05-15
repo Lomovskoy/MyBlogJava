@@ -4,6 +4,7 @@ import command.ActionCommand;
 import entity.Article;
 import entity.Comment;
 import entity.User;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
@@ -57,7 +58,7 @@ public class AddCommentCommand implements ActionCommand{
             Calendar publicdate = new GregorianCalendar();
             Article article = articleFasade.find(articleId);
 
-            Comment comment = new Comment(user, commentStr, publicdate.getTime());
+            Comment comment = new Comment(user, commentStr, publicdate.getTime(), new ArrayList<>());
             article.getComments().add(comment);
             articleFasade.edit(article);
             request.setAttribute("redirect", "?page=showOneArticle&id="+article.getId());
@@ -65,7 +66,8 @@ public class AddCommentCommand implements ActionCommand{
         }else{
             Article article = articleFasade.find(articleId);
             request.setAttribute("article", article);
-            request.setAttribute("info", "Строка комментария должна быть не пустой <br>или его длинна должна быть меньше 2000 символов");
+            request.setAttribute("info", "Строка комментария должна быть не пустой <br>"
+                    + "или его длинна должна быть меньше 2000 символов");
         }      
         
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resours.config");

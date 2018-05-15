@@ -6,8 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
- * @author pupil
+ * Фасад отвечающий за работу с ролями
+ * @author Lomovskoy
  */
 @Stateless
 public class RoleFacade extends AbstractFacade<Role> {
@@ -15,6 +15,10 @@ public class RoleFacade extends AbstractFacade<Role> {
     @PersistenceContext(unitName = "MyBlogLomovskoyPU")
     private EntityManager em;
 
+    /**
+     * Создание менеджера для работы с б.д.
+     * @return EntityManager
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;

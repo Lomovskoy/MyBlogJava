@@ -24,8 +24,8 @@ import resours.FileDirectoriesManager;
 import session.UserFacade;
 
 /**
- *
- * @author lomov
+ * Сервлет изменения и загрузки аватарки
+ * @author Lomovskoy
  */
 @WebServlet(name = "ChangeImage", urlPatterns = {"/changeimage"})
 @MultipartConfig
@@ -33,18 +33,17 @@ public class ChangeImageServlet extends HttpServlet {
 
     private final static Logger LOGGER
             = Logger.getLogger(FileUploadServlet.class.getCanonicalName());
-    //private UserFacade userFasade;
+
     @EJB
     UserFacade userFasade;
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
+     * Обрабатывает запросы для HTTP <code> GET </ code> и <code> POST </ code>
+     * методы.
      * @param request servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws ServletException если возникает ошибка, зависящая от сервлета
+     * @throws IOException если возникает ошибка ввода-вывода
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -77,7 +76,6 @@ public class ChangeImageServlet extends HttpServlet {
                 LOGGER.log(Level.INFO, "Файл {0} начал загружаться в {1}",
                         new Object[]{fileName, path});
 
-                //-------------------------------------
                 String name = user.getImage();
 
                 if (!"no-image.png".equals(name)) {
@@ -96,7 +94,7 @@ public class ChangeImageServlet extends HttpServlet {
                     File[] listOfFiles = folder.listFiles();
                     request.setAttribute("images", listOfFiles);
                 }
-                //------------------
+
                 user.setImage(fileName);
                 userFasade.edit(user);
                 session.setAttribute("user", user);
@@ -115,12 +113,16 @@ public class ChangeImageServlet extends HttpServlet {
             }
 
             UpdateFileFormCommand ufc = new UpdateFileFormCommand();
-            //!!!!
             ufc.execute(request);
         }
         response.sendRedirect("?page=changeinformationform");
     }
 
+    /**
+     * метод получения имени файла
+     * @param part
+     * @return String
+     */
     private String getFileName(final Part part) {
         final String partHeader = part.getHeader("content-disposition");
         LOGGER.log(Level.INFO, "Part Header = {0}", partHeader);
@@ -133,10 +135,14 @@ public class ChangeImageServlet extends HttpServlet {
         return null;
     }
 
+    /**
+     * Метод получения нового изменённого имени файла
+     * @param oldFileName
+     * @param request
+     * @return String
+     */
     private String getNewFileName(String oldFileName, HttpServletRequest request) {
         String[] splitByTochka = oldFileName.split(Pattern.quote("."));
-        System.out.println(oldFileName);
-        System.out.println(splitByTochka.length);
         String fileType = splitByTochka[splitByTochka.length - 1];
         if ("jpg".equals(fileType) || "png".equals(fileType) || "gif".equals(fileType)) {
             HttpSession session = request.getSession(false);

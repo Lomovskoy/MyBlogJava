@@ -26,6 +26,9 @@ public class CommentFacade extends AbstractFacade<Comment> {
         return em;
     }
 
+    /**
+     * Конструктор по умолчению
+     */
     public CommentFacade() {
         super(Comment.class);
     }

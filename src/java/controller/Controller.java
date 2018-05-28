@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Сервлет контроллер получающий от фабрики страницу 
- * определяющий существует ли она и осуществляющий перенаправлениеы
+ * Сервлет контроллер шаблона MVC - получающий запрос, обрабатывает его с 
+ * помощю интерфейса ActionCommand и отправляет полученную страницу клиенту.
  * @author Lomovskoy
  */
 @WebServlet(name = "Controller", urlPatterns = {""})
 public class Controller extends HttpServlet {
 
     /**
-     * Метод перенапрвавления на нужную страницу 
-     * определяемую фабрикой и нужным коммкандом
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException 
+     * Метод обработки запросов GET, POST отдаёт нужную страницу 
+     * определяемую фабрикой и нужным коммандом
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @throws ServletException ошибка при обработке сервлета.
+     * @throws IOException математическая ошибка вычисления.
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -32,7 +32,7 @@ public class Controller extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         ActionFactory factory = new ActionFactory();
-        ActionCommand actionCommand = factory.defiCommand(request);
+        ActionCommand actionCommand = factory.defineCommand(request);
         String page = actionCommand.execute(request);
 
         if (page != null) {

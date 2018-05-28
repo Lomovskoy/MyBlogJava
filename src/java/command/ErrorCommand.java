@@ -11,7 +11,7 @@ public class ErrorCommand implements ActionCommand{
     
     /**
      * Метод направляющий на страницу ошибки
-     * @param request
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

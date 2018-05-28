@@ -12,7 +12,7 @@ public class AdminCommand implements ActionCommand{
     
     /**
      * Метод отвечающий за переход на страницу администратора
-     * @param request
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

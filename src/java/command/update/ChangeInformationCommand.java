@@ -25,8 +25,8 @@ public class ChangeInformationCommand implements ActionCommand {
     private RoleFacade roleFasade;
 
     /**
-     * Конструктор реализующий подключение нужного бина
-     * в контекте этого класса.
+     * Конструктор реализующий поиск в контексте сервера придложений и 
+     * подключение нужного бина в поле класса.
      */
     public ChangeInformationCommand() {
         Context context;
@@ -41,7 +41,7 @@ public class ChangeInformationCommand implements ActionCommand {
 
     /**
      * Метот отвечающий за изменение информации о пользователя
-     * @param request
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

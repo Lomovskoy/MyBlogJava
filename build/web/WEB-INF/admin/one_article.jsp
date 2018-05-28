@@ -20,7 +20,7 @@
                 <button type="button" 
                         class="btn btn-outline-primary btn-sm fa fa-heart-o like-button-art ml-3" 
                         article="${article.id}" 
-                        postavlen="${article.LikedByUser(user) ? "1" : "0"}" 
+                        postavlen-art="${not empty user ? (article.LikedByUser(user) ? "1" : "0") : "2"}"  
                         count="${article.LikesCount()}">
                 </button>
                 <span class="card-link text-success ml-3">
@@ -75,7 +75,7 @@
                     <div class="row">
                         <div class="fa fa-heart-o like-button-com mt-1"
                             article="${comment.id}" 
-                            postavlen="${comment.LikedByUser(user) ? "1" : "0"}" 
+                            postavlen-com="${not empty user ? (comment.LikedByUser(user) ? "1" : "0") : "2"}"  
                             count="${comment.LikesCount()}">
                         </div>
                         <span class="card-link text-success ml-3">

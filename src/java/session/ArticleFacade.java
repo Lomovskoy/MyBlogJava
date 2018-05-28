@@ -30,15 +30,18 @@ public class ArticleFacade extends AbstractFacade<Article> {
         return em;
     }
 
+    /**
+     * Конструктор по умолчению
+     */
     public ArticleFacade() {
         super(Article.class);
     }
 
     /**
-     * Метод получение статей с цчётом пагинации
-     * @param articleFirst
-     * @param articleLast
-     * @return List<Article>
+     * Метод получение статей с учётом пагинации
+     * @param articleFirst Integer статья откуда начинать выборку
+     * @param articleLast Integer статья до какой надо делать выборку
+     * @return List Article
      */
     public List<Article> findPagination(Integer articleFirst, Integer articleLast) {
         try {
@@ -55,8 +58,8 @@ public class ArticleFacade extends AbstractFacade<Article> {
 
     /**
      * Метод получения статей по поиску
-     * @param search
-     * @return List<Article>
+     * @param search String
+     * @return List Article
      */
     public List<Article> searchPagination(String search) {
         try {

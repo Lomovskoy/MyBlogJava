@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import session.ArticleFacade;
 
 /**
- * Класс отвечающий за отображение одной статьи
+ * Класс отвечающий за поиск и отображение одной статьи.
  * @author Lomovskoy
  */
 public class ShowOneArticleCommand implements ActionCommand {
@@ -21,8 +21,8 @@ public class ShowOneArticleCommand implements ActionCommand {
     private ArticleFacade articleFasade;
 
     /**
-     * Конструктор реализующий подключение нужного бина
-     * в контекте этого класса.
+     * Конструктор реализующий поиск в контексте сервера придложений и 
+     * подключение нужного бина в поле класса.
      */
     public ShowOneArticleCommand() {
         Context context;
@@ -35,8 +35,8 @@ public class ShowOneArticleCommand implements ActionCommand {
     }
 
     /**
-     * Метод отвечающий за отображение одной статьи
-     * @param request
+     * Метод отвечающий за поиск и отображение одной статьи.
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

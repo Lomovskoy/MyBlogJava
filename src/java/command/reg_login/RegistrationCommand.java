@@ -25,8 +25,8 @@ public class RegistrationCommand implements ActionCommand {
     private RoleFacade roleFasade;
 
     /**
-     * Конструктор реализующий подключение нужного бина
-     * в контекте этого класса.
+     * Конструктор реализующий поиск в контексте сервера придложений и 
+     * подключение нужного бина в поле класса.
      */
     public RegistrationCommand() {
         Context context;
@@ -41,7 +41,7 @@ public class RegistrationCommand implements ActionCommand {
 
     /**
      * Метод отвечающий за регистрациюб пользователя
-     * @param request
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

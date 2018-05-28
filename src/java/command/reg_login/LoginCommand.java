@@ -29,8 +29,8 @@ public class LoginCommand implements ActionCommand {
     private ArticleFacade articleFasade;
 
     /**
-     * Конструктор реализующий подключение нужного бина
-     * в контекте этого класса.
+     * Конструктор реализующий поиск в контексте сервера придложений и 
+     * подключение нужного бина в поле класса.
      */
     public LoginCommand() {
         Context context;
@@ -45,7 +45,7 @@ public class LoginCommand implements ActionCommand {
 
     /**
      * Метод входа в кабенет пользователя
-     * @param request
+     * @param request String
      * @return String
      */
     @Override

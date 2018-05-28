@@ -13,7 +13,7 @@ public class OutCommand implements ActionCommand {
 
     /**
      * Метод выхода из сессии
-     * @param request
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

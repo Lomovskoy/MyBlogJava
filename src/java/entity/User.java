@@ -45,7 +45,6 @@ public class User implements Serializable {
     @JoinColumn(name = "role")
     private Role role;
     
-    
     @Size(min=6,max=255)
     @Column(name = "email", unique = true)
     private String email;
@@ -54,9 +53,22 @@ public class User implements Serializable {
     @Column(name = "image")
     private String image;
     
+    /**
+     * Конструктор по умолчению
+     */
     public User() {
     }
 
+    /**
+     * Конструктор класса
+     * @param login
+     * @param password
+     * @param salts
+     * @param active
+     * @param role
+     * @param email
+     * @param image
+     */
     public User(String login, String password, String salts, Boolean active, Role role, String email, String image) {
         this.login = login;
         this.password = password;
@@ -67,70 +79,138 @@ public class User implements Serializable {
         this.image = image;
     }
 
+    /**
+     * Получить идентифиукатор
+     * @return Long
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Установить идентифиукатор
+     * @param id Long
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Получить логин
+     * @return String
+     */
     public String getLogin() {
         return login;
     }
 
+    /**
+     * Установить логин
+     * @param login String
+     */
     public void setLogin(String login) {
         this.login = login;
     }
 
+    /**
+     * Получить пароль
+     * @return String
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Установить пароль
+     * @param password String
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * Получить соль
+     * @return String
+     */
     public String getSalts() {
         return salts;
     }
 
+    /**
+     * Установить соль
+     * @param salts String
+     */
     public void setSalts(String salts) {
         this.salts = salts;
     }
 
+    /**
+     * Получить статус
+     * @return Boolean
+     */
     public Boolean getActive() {
         return active;
     }
 
+    /**
+     * Установить статус
+     * @param active Boolean
+     */
     public void setActive(Boolean active) {
         this.active = active;
     }
 
+    /**
+     * Получить роль
+     * @return Role
+     */
     public Role getRole() {
         return role;
     }
 
+    /**
+     * Установить роль
+     * @param role Role
+     */
     public void setRole(Role role) {
         this.role = role;
     }
 
+    /**
+     * Получить почту
+     * @return String
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Установить почту
+     * @param email String
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     * Получить картинку
+     * @return String
+     */
     public String getImage() {
         return image;
     }
 
+    /**
+     * Установить картинку
+     * @param image String
+     */
     public void setImage(String image) {
         this.image = image;
     }
 
+    /**
+     * Метод отдающий хешь код обьекта
+     * @return int
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -145,6 +225,11 @@ public class User implements Serializable {
         return hash;
     }
 
+    /**
+     * Метод сравнения объектов
+     * @param obj
+     * @return Object
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -184,6 +269,10 @@ public class User implements Serializable {
         return true;
     }
 
+    /**
+     * Метод выводящий в строку все данные
+     * @return String
+     */
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", login=" + login + ", password=" + password + ", salts=" + salts + ", active=" + active + ", role=" + role + ", email=" + email + ", image=" + image + '}';

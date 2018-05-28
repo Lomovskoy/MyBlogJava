@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import session.ArticleFacade;
 
 /**
- * Класс отвечающий за отображение всех статей
+ * Класс отвечающий за отображение всех статей с пагинацией.
  * @author Lomovskoy
  */
 public class ShowArticlesCommand implements ActionCommand {
@@ -24,8 +24,8 @@ public class ShowArticlesCommand implements ActionCommand {
     private ArticleFacade articleFasade;
 
     /**
-     * Конструктор реализующий подключение нужного бина
-     * в контекте этого класса.
+     * Конструктор реализующий поиск в контексте сервера придложений и 
+     * подключение нужного бина в поле класса.
      */
     public ShowArticlesCommand() {
         Context context;
@@ -38,8 +38,8 @@ public class ShowArticlesCommand implements ActionCommand {
     }
 
     /**
-     * Метод отвечающий за отображение всех статей
-     * @param request
+     * Метод отвечающий за отображение всех статей с пагинацией.
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

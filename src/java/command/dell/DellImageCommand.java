@@ -14,7 +14,7 @@ public class DellImageCommand implements ActionCommand{
 
     /**
      * Метод удаления изображения
-     * @param request
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

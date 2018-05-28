@@ -6,21 +6,30 @@ import javax.persistence.EntityManager;
 /**
  * Абстракный класс реализующий все основные методы работы с б.д.
  * @author Lomovskoy
- * @param <T>
+ * @param <T> Class получает объект статьи или пользователя 
+ * в зависимости от реализауции.
  */
 public abstract class AbstractFacade<T> {
 
     private Class<T> entityClass;
 
+    /**
+     * Конструктор принимающицй класс постоянства
+     * @param entityClass Class
+     */
     public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
+    /**
+     * Полуть Эентити менеджера
+     * @return EntityManager
+     */
     protected abstract EntityManager getEntityManager();
 
     /**
      * Создать запись
-     * @param entity 
+     * @param entity Object
      */
     public void create(T entity) {
         getEntityManager().persist(entity);
@@ -28,7 +37,7 @@ public abstract class AbstractFacade<T> {
 
     /**
      * Изменить запись
-     * @param entity 
+     * @param entity Object
      */
     public void edit(T entity) {
         getEntityManager().merge(entity);
@@ -36,7 +45,7 @@ public abstract class AbstractFacade<T> {
 
     /**
      * Удалить запись
-     * @param entity 
+     * @param entity Object
      */
     public void remove(T entity) {
         getEntityManager().remove(getEntityManager().merge(entity));
@@ -44,7 +53,7 @@ public abstract class AbstractFacade<T> {
 
     /**
      * Получить по идентификатору
-     * @param id
+     * @param id Object
      * @return Object
      */
     public T find(Object id) {
@@ -53,7 +62,7 @@ public abstract class AbstractFacade<T> {
 
     /**
      * Поулчить всё
-     * @return List<Object>
+     * @return List Object
      */
     public List<T> findAll() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
@@ -63,8 +72,8 @@ public abstract class AbstractFacade<T> {
 
     /**
      * Получить записи в диакпазоне
-     * @param range
-     * @return List<Object>
+     * @param range int[]
+     * @return List Object
      */
     public List<T> findRange(int[] range) {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();

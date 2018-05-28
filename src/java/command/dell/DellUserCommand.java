@@ -25,8 +25,8 @@ public class DellUserCommand implements ActionCommand{
     private UserFacade userFasade;
     
     /**
-     * Конструктор реализующий подключение нужного бина
-     * в контекте этого класса.
+     * Конструктор реализующий поиск в контексте сервера придложений и 
+     * подключение нужного бина в поле класса.
      */
     public DellUserCommand() {
         Context context;
@@ -40,7 +40,7 @@ public class DellUserCommand implements ActionCommand{
 
     /**
      * Метод удаления пользователя
-     * @param request
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

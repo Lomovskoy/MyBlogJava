@@ -19,8 +19,8 @@ public class Cryptography {
 
     /**
      * Зашифровает пароль с полученной солью
-     * @param password
-     * @param salts
+     * @param password String
+     * @param salts String
      * @return String
      */
     public static String setEncriptPasssword(String password, String salts){
@@ -55,9 +55,9 @@ public class Cryptography {
     
     /**
      * Сравнивает пароли
-     * @param passwordUser
-     * @param passwordDb
-     * @param salts
+     * @param passwordUser String
+     * @param passwordDb String
+     * @param salts String
      * @return Boolean
      */
     public static Boolean comparePasssword(String passwordUser, String passwordDb, String salts){

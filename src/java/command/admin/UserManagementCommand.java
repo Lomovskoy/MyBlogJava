@@ -22,8 +22,8 @@ public class UserManagementCommand implements ActionCommand{
     private UserFacade userFasade;
     
     /**
-     * Конструктор реализующий подключение нужного бина
-     * в контекте этого класса.
+     * Конструктор реализующий поиск в контексте сервера придложений и 
+     * подключение нужного бина в поле класса.
      */
     public UserManagementCommand() {
         Context context;
@@ -39,7 +39,7 @@ public class UserManagementCommand implements ActionCommand{
      * Метод определяющий администратор пользователя или 
      * юзер и перенаправляет его на соответствующую страницу
      * при входе на найт.
-     * @param request
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

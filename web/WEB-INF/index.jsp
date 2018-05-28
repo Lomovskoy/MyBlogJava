@@ -22,9 +22,9 @@
                     <div class="row">
                         <button type="button" 
                                 id="like" 
-                                class="btn btn-outline-primary btn-sm fa fa-heart-o like-button-art" 
+                                class="btn btn-outline-primary btn-sm fa fa-heart-o like-button-art ml-3" 
                                 article="${article.id}" 
-                                postavlen="${article.LikedByUser(user) ? "1" : "0"}" 
+                                postavlen-art="${not empty user ? (article.LikedByUser(user) ? "1" : "0") : "2"}" 
                                 count="${article.LikesCount()}">
                         </button>
                         <span class="card-link text-success ml-3" style="border: #0069d9">

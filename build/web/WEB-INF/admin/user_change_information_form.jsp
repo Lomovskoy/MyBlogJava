@@ -18,21 +18,21 @@
     <div class="row">
         <form class="col-6 mt-4 ml-3 p-4 border border-secondary rounded" action="?page=changeinformation" method="POST">
             <div class="form-group">
-                <label for="exampleInputLogin">Ведите логин если хотите изменить</label>
+                <label for="exampleInputLogin">Ведите логин, что бы изменить</label>
                 <input type="text" class="form-control" name="login" placeholder="Enter login">
                 <small id="emailHelp" class="form-text text-muted">Ваш логин должен быть уникальным.</small>
             </div>
             <div class="form-group">
-                <label for="exampleInputLogin">Ведите email если хотите изменить</label>
+                <label for="exampleInputLogin">Ведите email, что бы изменить</label>
                 <input type="email" class="form-control" name="email" placeholder="Enter email">
                 <small id="emailHelp" class="form-text text-muted">Ваша почта должна быть уникальной.</small>
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Ведите пароль если хотите изменить</label>
+                <label for="exampleInputPassword1">Ведите пароль, что бы изменить</label>
                 <input type="password" class="form-control" name="password1" placeholder="Enter password">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Повторите пароль если хотите изменить</label>
+                <label for="exampleInputPassword1">Повторите пароль, что бы изменить</label>
                 <input type="password" class="form-control" name="password2" placeholder="Enter password">
                 <small id="emailHelp" class="form-text text-muted">Пароли должны совпадать.</small>
             </div>

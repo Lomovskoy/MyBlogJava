@@ -23,10 +23,10 @@ public class LikeArtServlet extends HttpServlet {
 
     /**
      * Метод отвечающий за прибавление и удаление лайков к статье
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException 
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @throws ServletException ошибка работы сервлета.
+     * @throws IOException арифметическая ошибка вычисления.
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

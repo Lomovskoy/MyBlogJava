@@ -1,6 +1,5 @@
 package session;
 
-import entity.Role;
 import entity.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -25,13 +24,16 @@ public class UserFacade extends AbstractFacade<User> {
         return em;
     }
 
+    /** 
+     * Конструктор по умолчению
+     */
     public UserFacade() {
         super(User.class);
     }
     
     /**
      * Получить пользователя по логнину
-     * @param login
+     * @param login String
      * @return User
      */
     public User findByLogin(String login){
@@ -49,7 +51,7 @@ public class UserFacade extends AbstractFacade<User> {
     
     /**
      * Получить пользователя по почте
-     * @param email
+     * @param email String
      * @return User
      */
     public User findByEmail(String email){

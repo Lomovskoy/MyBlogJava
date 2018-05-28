@@ -24,6 +24,9 @@ public class RoleFacade extends AbstractFacade<Role> {
         return em;
     }
 
+    /**
+     * Конструктор по умолчению
+     */
     public RoleFacade() {
         super(Role.class);
     }

@@ -16,7 +16,7 @@ public class UpdateFileFormCommand implements ActionCommand{
     
     /**
      * Метод перехода на страницу добавления изображения
-     * @param request
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

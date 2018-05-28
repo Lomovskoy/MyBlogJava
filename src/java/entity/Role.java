@@ -28,29 +28,56 @@ public class Role implements Serializable {
     @Column(name = "roles")
     private String roles;
 
+    /**
+     * Конструктор по умолчению
+     */
     public Role() {
     }
 
+    /**
+     * Конструктор класса
+     * @param roles String
+     */
     public Role(String roles) {
         this.roles = roles;
     }
 
+    /**
+     * Получить идентифиукатор
+     * @return Long
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Установить идентифиукатор
+     * @param id Long
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Получить роль
+     * @return String
+     */
     public String getRoles() {
         return roles;
     }
 
+    /**
+     * Установить роль
+     * @param roles String
+     */
     public void setRoles(String roles) {
         this.roles = roles;
     }
 
+    /**
+     * Метод отдающий хешь код обьекта
+     * @return int 
+     */
     @Override
     public int hashCode() {
         int hash = 5;
@@ -59,6 +86,11 @@ public class Role implements Serializable {
         return hash;
     }
 
+    /**
+     * Метод сравнения объектов
+     * @param obj
+     * @return Object
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -80,6 +112,10 @@ public class Role implements Serializable {
         return true;
     }
 
+    /**
+     * Метод выводящий в строку все данные
+     * @return String
+     */
     @Override
     public String toString() {
         return "Role{" + "id=" + id + ", roles=" + roles + '}';

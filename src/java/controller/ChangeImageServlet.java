@@ -38,7 +38,7 @@ public class ChangeImageServlet extends HttpServlet {
     UserFacade userFasade;
 
     /**
-     * Обрабатывает запросы для HTTP <code> GET </ code> и <code> POST </ code>
+     * Обрабатывает запросы для HTTP GET и POST
      * методы.
      * @param request servlet request
      * @param response servlet response

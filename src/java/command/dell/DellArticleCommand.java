@@ -24,8 +24,8 @@ public class DellArticleCommand implements ActionCommand {
     private ArticleFacade articleFasade;
 
     /**
-     * Конструктор реализующий подключение нужного бина
-     * в контекте этого класса.
+     * Конструктор реализующий поиск в контексте сервера придложений и 
+     * подключение нужного бина в поле класса.
      */
     public DellArticleCommand() {
         Context context;
@@ -38,9 +38,9 @@ public class DellArticleCommand implements ActionCommand {
     }
 
     /**
-     * Метод удаления статьи и пе5ренаправляющий на 
+     * Метод удаления статьи и перенаправляющий на 
      * страницу редактирования статей
-     * @param request
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

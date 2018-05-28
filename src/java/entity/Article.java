@@ -57,9 +57,22 @@ public class Article implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     private List<User> likes;
 
+    /**
+     * Конструктор по умолчению
+     */
     public Article() {
     }
 
+    /**
+     * Конструктор класса
+     * @param caption String
+     * @param content String
+     * @param publicdate Date
+     * @param author User
+     * @param active Boolean
+     * @param comments List Comment
+     * @param likes List User
+     */
     public Article(String caption, String content, Date publicdate, User author, 
             Boolean active, List<Comment> comments, List<User> likes) {
         this.caption = caption;
@@ -71,70 +84,138 @@ public class Article implements Serializable {
         this.likes = likes;
     }
 
+    /**
+     * Получить идентифиукатор
+     * @return Long
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Установить идентифиукатор
+     * @param id Long
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Получить заголовок
+     * @return String
+     */
     public String getCaption() {
         return caption;
     }
 
+    /**
+     * Установить заголовок
+     * @param caption String
+     */
     public void setCaption(String caption) {
         this.caption = caption;
     }
 
+    /**
+     * Получить содержание
+     * @return String
+     */
     public String getContent() {
         return content;
     }
 
+    /**
+     * Установить содержание
+     * @param content String
+     */
     public void setContent(String content) {
         this.content = content;
     }
 
+    /**
+     * Получить дату публикации
+     * @return Date
+     */
     public Date getPublicdate() {
         return publicdate;
     }
 
+    /**
+     * Установить дату публикации
+     * @param publicdate Date
+     */
     public void setPublicdate(Date publicdate) {
         this.publicdate = publicdate;
     }
 
+    /**
+     * Получить автора
+     * @return User
+     */
     public User getAuthor() {
         return author;
     }
 
+    /**
+     * Установить автора
+     * @param author User
+     */
     public void setAuthor(User author) {
         this.author = author;
     }
 
+    /**
+     * Получить активной или нет
+     * @return Boolean
+     */
     public Boolean getActive() {
         return active;
     }
 
+    /**
+     * Установить активной или нет
+     * @param active Boolean
+     */
     public void setActive(Boolean active) {
         this.active = active;
     }
 
+    /**
+     * Получить комментарий
+     * @return List Comment
+     */
     public List<Comment> getComments() {
         return comments;
     }
 
+    /**
+     * Установить комментарий
+     * @param comments List Comment
+     */
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 
+    /**
+     * Получить лайк
+     * @return List User
+     */
     public List<User> getLikes() {
         return likes;
     }
 
+    /**
+     * Установить лайк
+     * @param likes List User
+     */
     public void setLikes(List<User> likes) {
         this.likes = likes;
     }
 
+    /**
+     * Метод отдающий хешь код обьекта
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -149,6 +230,11 @@ public class Article implements Serializable {
         return hash;
     }
 
+    /**
+     * Метод сравнения объектов
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -188,6 +274,10 @@ public class Article implements Serializable {
         return true;
     }
 
+    /**
+     * Метод выводящий в строку все данные
+     * @return
+     */
     @Override
     public String toString() {
         return "Article{" + "id=" + id + ", caption=" + caption + ", content=" + content + ", publicdate=" + publicdate + ", author=" + author + ", active=" + active + ", comments=" + comments + ", likes=" + likes + '}';
@@ -203,7 +293,7 @@ public class Article implements Serializable {
 
     /**
      * Ставил ли лийк этот пользователь
-     * @param user
+     * @param user User
      * @return boolean
      */
     public boolean LikedByUser(User user) {
@@ -212,7 +302,7 @@ public class Article implements Serializable {
 
      /**
       * Добавить лайк
-      * @param user 
+      * @param user User
       */
     public void LikeAdd(User user) {
         likes.add(user);
@@ -220,7 +310,7 @@ public class Article implements Serializable {
 
     /**
      * Удалить лайк
-     * @param user 
+     * @param user User
      */
     public void LikeDelete(User user) {
         likes.remove(user);

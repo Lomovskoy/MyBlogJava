@@ -23,8 +23,8 @@ public class UpdateArticleCommand implements ActionCommand{
     private ArticleFacade articleFasade;
     
     /**
-     * Конструктор реализующий подключение нужного бина
-     * в контекте этого класса.
+     * Конструктор реализующий поиск в контексте сервера придложений и 
+     * подключение нужного бина в поле класса.
      */
     public UpdateArticleCommand() {
         Context context;
@@ -38,7 +38,7 @@ public class UpdateArticleCommand implements ActionCommand{
     
     /**
      * Метод отвечающий за изменение статьи
-     * @param request
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

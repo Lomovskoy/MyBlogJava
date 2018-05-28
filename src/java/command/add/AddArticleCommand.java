@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import session.ArticleFacade;
 
 /**
- * Класс отвечающий за добавлений новой статьи
+ * Класс отвечающий за создание и добавление новой статьи
  * @author Lomovskoy
  */
 public class AddArticleCommand implements ActionCommand{
@@ -26,8 +26,8 @@ public class AddArticleCommand implements ActionCommand{
     private ArticleFacade articleFasade;
     
     /**
-     * Конструктор реализующий подключение нужного бина
-     * в контекте этого класса.
+     * Конструктор реализующий поиск в контексте сервера придложений и 
+     * подключение нужного бина в поле класса.
      */
     public AddArticleCommand() {
         Context context;
@@ -40,8 +40,8 @@ public class AddArticleCommand implements ActionCommand{
     }
     
     /**
-     * Метод отвечающий за добавлений новой статьи
-     * @param request
+     * Метод отвечающий за создание и добавлений новой статьи
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

@@ -12,7 +12,7 @@ public class RegFormCommand implements ActionCommand{
 
     /**
      * Метод отвечающий за перенаправление на форму регистрации
-     * @param request
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

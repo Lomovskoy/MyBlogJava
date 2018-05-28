@@ -26,8 +26,8 @@ public class UpdateUserCommand implements ActionCommand{
     private RoleFacade roleFacade;
     
     /**
-     * Конструктор реализующий подключение нужного бина
-     * в контекте этого класса.
+     * Конструктор реализующий поиск в контексте сервера придложений и 
+     * подключение нужного бина в поле класса.
      */
     public UpdateUserCommand() {
         Context context;
@@ -42,7 +42,7 @@ public class UpdateUserCommand implements ActionCommand{
 
     /**
      * Метод изменения, управления пользователями
-     * @param request
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

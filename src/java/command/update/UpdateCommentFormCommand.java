@@ -23,8 +23,8 @@ public class UpdateCommentFormCommand implements ActionCommand {
     private CommentFacade commentFacade;
 
     /**
-     * Конструктор реализующий подключение нужного бина
-     * в контекте этого класса.
+     * Конструктор реализующий поиск в контексте сервера придложений и 
+     * подключение нужного бина в поле класса.
      */
     public UpdateCommentFormCommand() {
         Context context;
@@ -38,7 +38,7 @@ public class UpdateCommentFormCommand implements ActionCommand {
 
     /**
      * Метод перехода на форму изменения комментария
-     * @param request
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

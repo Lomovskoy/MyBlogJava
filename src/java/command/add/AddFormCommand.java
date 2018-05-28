@@ -16,7 +16,7 @@ public class AddFormCommand implements ActionCommand{
     
     /**
      * Метод перехода на страницу добавления статьи
-     * @param request
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

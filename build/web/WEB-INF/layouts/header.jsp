@@ -50,9 +50,15 @@
                         <c:if test="${not empty user}">
                             <ul class="navbar-nav">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href='#'>Приветствую: ${user.getLogin()} <img src="imageServlet/${user.image}" alt="Photo" class="rounded-circle" style="height: 30px"></a>
-
+                                    <a class="nav-link">
+                                        Приветствую: ${user.getLogin()} 
+                                        <img src="imageServlet/${user.image}" alt="Photo" class="rounded-circle" style="height: 30px">
+                                    </a>
                                 </li>
+                                <li class="nav-item active mt-1 mr-1">
+                                    <a class="btn btn-outline-light my-2 my-sm-0" href="template/client/Gui.jar" download="ChatBlog.jar">Скачать клиент</a>
+                                </li>
+                                
                             </ul>
                             <c:if test='${user.getRole().getRoles().equals("ADMIN")}'>
                                 <a class="btn btn-outline-light my-2 my-sm-0" href="?page=login">Кабинет</a>

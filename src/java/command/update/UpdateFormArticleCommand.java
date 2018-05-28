@@ -25,8 +25,8 @@ public class UpdateFormArticleCommand implements ActionCommand{
     private ArticleFacade articleFasade;
     
     /**
-     * Конструктор реализующий подключение нужного бина
-     * в контекте этого класса.
+     * Конструктор реализующий поиск в контексте сервера придложений и 
+     * подключение нужного бина в поле класса.
      */
     public UpdateFormArticleCommand() {
         Context context;
@@ -40,7 +40,7 @@ public class UpdateFormArticleCommand implements ActionCommand{
     
     /**
      * Метод перехода на форму изменения комментария
-     * @param request
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

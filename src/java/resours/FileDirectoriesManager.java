@@ -14,7 +14,7 @@ public class FileDirectoriesManager {
     private FileDirectoriesManager(){}
     /**
      * Сетод возврата директории по ключу
-     * @param key
+     * @param key String
      * @return String
      */
     public static String getProperty(String key){

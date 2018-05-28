@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import session.ArticleFacade;
 
 /**
- * Класс отвечающий за поиск статей
+ * Класс отвечающий за поиск и отображение статей
  * @author Lomovskoy
  */
 public class SearchCommand implements ActionCommand {
@@ -21,8 +21,8 @@ public class SearchCommand implements ActionCommand {
     private ArticleFacade articleFasade;
 
     /**
-     * Конструктор реализующий подключение нужного бина
-     * в контекте этого класса.
+     * Конструктор реализующий поиск в контексте сервера придложений и 
+     * подключение нужного бина в поле класса.
      */
     public SearchCommand() {
         Context context;
@@ -35,8 +35,8 @@ public class SearchCommand implements ActionCommand {
     }
 
     /**
-     * Метод осуществляющий поиск по статьям
-     * @param request
+     * Метод осуществляющий поиск по статьям и отображение найденных
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

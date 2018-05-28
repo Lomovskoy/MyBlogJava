@@ -13,7 +13,7 @@ public class ChangeInformationFormCommand implements ActionCommand {
     
     /**
      * Метод перехода на форму изменения информации
-     * @param request
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

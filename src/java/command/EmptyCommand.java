@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import session.ArticleFacade;
 
 /**
- * Класс отвечающи за открытие индексной страницы.
+ * Класс отвечающи за нарполнение контекстом индексной страницы.
  * @author Lomovskoy
  */
 public class EmptyCommand implements ActionCommand {
@@ -21,8 +21,8 @@ public class EmptyCommand implements ActionCommand {
     private ArticleFacade articleFasade;
 
     /**
-     * Конструктор реализующий подключение нужного бина
-     * в контекте этого класса.
+     * Конструктор реализующий поиск в контексте сервера придложений и 
+     * подключение нужного бина в поле класса.
      */
     public EmptyCommand() {
         Context context;
@@ -36,8 +36,8 @@ public class EmptyCommand implements ActionCommand {
 
     /**
      * Метод возвращающий индексную страницу если нет заданных
-     * переметров сслки
-     * @param request
+     * переметров ссылки
+     * @param request HttpServletRequest
      * @return String
      */
     @Override

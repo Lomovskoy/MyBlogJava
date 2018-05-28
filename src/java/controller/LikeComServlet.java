@@ -23,10 +23,10 @@ public class LikeComServlet extends HttpServlet {
     
     /**
      * Метод отвечающий за прибавление и удаление лайков к комментарию
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException 
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @throws ServletException ошибка работы сервлета.
+     * @throws IOException арифметическая ошибка вычисления.
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,13 +37,13 @@ public class LikeComServlet extends HttpServlet {
         
         User user = (User) session.getAttribute("user");
         
-        String idstring = request.getParameter("id");
-        String chtoSdelatStr = request.getParameter("choSdelat");
+        String idstring = request.getParameter("id");//?
+        String chtoSdelatStr = request.getParameter("choSdelat");//?
         
-        long artId = Long.parseLong(idstring);
+        long comId = Long.parseLong(idstring);
         boolean stavitLike = "1".equals(chtoSdelatStr);
         
-        Comment comment = commentFasade.find(artId);
+        Comment comment = commentFasade.find(comId);
         
         if(comment == null) return;
         if(user == null) return;

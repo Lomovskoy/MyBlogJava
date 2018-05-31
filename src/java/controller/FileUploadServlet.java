@@ -7,6 +7,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -27,9 +30,13 @@ import resours.FileDirectoriesManager;
 @MultipartConfig
 public class FileUploadServlet extends HttpServlet {
 
-    private final static Logger LOGGER
-            = Logger.getLogger(FileUploadServlet.class.getCanonicalName());
+    private final static Logger LOGGER = 
+            Logger.getLogger(FileUploadServlet.class.getCanonicalName());
 
+    private final static DateFormat dateFormat = 
+            new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss-SSS");
+
+            
     /**
      * Обрабатывает запросы для HTTP GET и POST
      * методы.
@@ -119,9 +126,14 @@ public class FileUploadServlet extends HttpServlet {
         
             File folder = new File(path);
             File[] listOfFiles = folder.listFiles();
-            Integer filename = (listOfFiles.length + 1);
+
+                
+            // Инициализация объекта date
+            Date date = new Date();
+    
+            String dateString = dateFormat.format(date);
             
-            String newfilename = Integer.toString(filename);
+            String newfilename = dateString;
             return newfilename + "." + fileType;
         }
         return null;

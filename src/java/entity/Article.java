@@ -54,7 +54,7 @@ public class Article implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Comment> comments;
     
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.DETACH)
     private List<User> likes;
 
     /**

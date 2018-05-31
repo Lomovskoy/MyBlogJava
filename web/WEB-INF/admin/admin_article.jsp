@@ -74,4 +74,7 @@
         </table>
     </div>
 </c:if>
+    <c:if test='${!user.getRole().getRoles().equals("ADMIN") || !user.getRole().getRoles().equals("EDITOR")}'>
+    <h5 class="text-center">Вам здесь не рады</h5>
+</c:if>
 <%@include file = "../layouts/footer.jsp" %>

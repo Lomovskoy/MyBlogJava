@@ -42,7 +42,7 @@ public class Comment implements Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     private Date publicdate;
     
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.DETACH)
     private List<User> likes;
     
     /*@ManyToOne(fetch = FetchType.LAZY)

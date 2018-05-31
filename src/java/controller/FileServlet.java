@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import resours.FileDirectoriesManager;
 
 /**
- * Сервлет отвечающий за подгрузку изображений в спредставление
+ * Сервлет отвечающий за подгрузку изображений в представление
  * @author Lomovskoy
  */
 @WebServlet(name = "fileServlet", urlPatterns = {"/fileServlet/*"})

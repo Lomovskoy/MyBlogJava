@@ -10,7 +10,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@include file = "../layouts/header.jsp" %>
-
+<c:if test='${user.getRole().getRoles().equals("ADMIN") || user.getRole().getRoles().equals("EDITOR")}'>
 <div class="container">
     <form class="col-4 mr-auto mt-4 p-4 border border-secondary rounded container" action="upload" method="POST" enctype="multipart/form-data">
         <div class="form-group">
@@ -49,6 +49,10 @@
     </div>
 
 </div>
+</c:if>  
+<c:if test='${!user.getRole().getRoles().equals("ADMIN") || !user.getRole().getRoles().equals("EDITOR")}'>
+    <h5 class="text-center">Вам здесь не рады</h5>
+</c:if>
 
 <%@include file = "../layouts/footer.jsp" %>
 
